@@ -5,16 +5,26 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-    AudioSource audioSource;
+    private static AudioManager instance;
+    private AudioClip clipToPlay;
+    private AudioSource audioSource;
+
+    public static AudioManager Instance { get { return instance; } }
     private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
