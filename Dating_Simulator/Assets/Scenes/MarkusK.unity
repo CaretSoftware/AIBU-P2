@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3beb83d922399ed44b3c01e2b031bd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interestsCount: 2
-  mainInterest: {fileID: 1013342627}
+  interestsCount: 3
+  mainInterest: []
   interests: []
 --- !u!65 &934154875
 BoxCollider:

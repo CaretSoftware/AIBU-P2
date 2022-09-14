@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
 	[Header("Character stats")]
 	private static Character instance;
 	[SerializeField] private int interestsCount;
-	[SerializeField] private Interest mainInterest;
+	[SerializeField] private Interest[] mainInterest;
    [SerializeField] private Interest[] interests;
 	private int LoveInterest { get { return LoveInterest; } set => LoveInterest = value; }
 	private int Drunkness { get { return Drunkness; } set => Drunkness = value; }
@@ -39,8 +39,14 @@ public class Character : MonoBehaviour
 
 	private void RandomizeInterests()
 	{
-		interests[0] = mainInterest;
-		for (int i = 1; i < interestsCount; i++)
+		int i = 0;
+		if (mainInterest.Length > 0)
+		{
+			i++;
+			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Length)];
+		}
+
+		for (; i < interestsCount; i++)
 		{
 			Interest interest = InterestHolder.Instance.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
 			while (FindInterest(interest) != -1)
