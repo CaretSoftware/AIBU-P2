@@ -155,11 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3beb83d922399ed44b3c01e2b031bd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subjects:
-  - hej
-  - mulle
-  - haha
-  - super
+  subjects: []
   interests: []
 --- !u!65 &934154875
 BoxCollider:
