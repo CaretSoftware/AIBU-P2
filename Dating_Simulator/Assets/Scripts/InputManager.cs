@@ -4,29 +4,14 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private LayerMask dialogueOption;
-    [SerializeField] private LayerMask objectThatDoSomething;
-
-    private GameObject clickedObject;
-    // Update is called once per frame
-    void Update()
+    // What should happen when you have clicked a dialogue option
+    public void ClickedDialogue(GameObject clickedDialogue)
     {
-        if (!Input.GetMouseButtonDown(0)) return;
+        clickedDialogue.GetComponent<DialogueOption>().ShowNextDialogue();
+    }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        
-
-        if (Physics.Raycast(ray, out hit, 100, dialogueOption))
-        {
-            clickedObject = hit.collider.gameObject;
-            //clickedObject.GetComponent<SCRIPT>().DoSomething();
-
-        }
-
-        if (Physics.Raycast(ray, out hit, 100, objectThatDoSomething))
-        {
-            //hit.collider.gameObject.getComponent<SCRIPT>().DoSomething();
-        }
+    public void ClickedObject(GameObject clickedObject)
+    {
+        //clickedObject.GetComponent<SCRIPT>().MethodToRun();   Vad som ska hända när man klickar på ett object i scenen (t.ex. Spela en animation)
     }
 }
