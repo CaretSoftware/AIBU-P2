@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     private static AudioManager instance;
     private AudioClip clipToPlay;
-    private AudioSource audioSource;
 
     public static AudioManager Instance { get { return instance; } }
     private void Awake()
-    {
+    {    
         if (instance == null)
         {
             instance = this;
@@ -21,15 +21,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void PlaySound(AudioClip soundToPlay)
+    {       
+        audioSource.clip = soundToPlay;
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.Play();
     }
 }

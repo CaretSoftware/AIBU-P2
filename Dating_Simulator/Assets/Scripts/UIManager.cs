@@ -2,34 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Text textElement;
+    [SerializeField] private TMP_Text textElement;
+    [SerializeField] private AudioClip dialogueSound;
+    private AudioManager audioManager;
     private string textInputed;
     private string textToOutput;
-    private int textLength;
+    
 
     // Start is called before the first frame update
     void Start()
-    {      
+    {
+        audioManager = AudioManager.Instance;
         textInputed = "This is just a test to see how it looks to write out";
-        textLength = textInputed.Length;
-        StartCoroutine("WriteDialogue");
+        StartCoroutine(WriteDialogue());
     }
 
     void DisplayDialogue()
     {
         textElement.text = textToOutput;
+        audioManager.PlaySound(dialogueSound);
     }
 
     IEnumerator WriteDialogue()
     {
-        for (int i = 0; i < textLength; i++)
+        textElement.text = "";
+        foreach (char letter in textInputed.ToCharArray())
         {
-            textToOutput += textInputed[i].ToString();
+            textToOutput += letter;
             DisplayDialogue();
             yield return new WaitForSeconds(0.05f);
-        }      
+        }                        
     }
 }
