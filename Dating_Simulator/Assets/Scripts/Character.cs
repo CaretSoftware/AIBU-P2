@@ -8,9 +8,9 @@ public class Character : MonoBehaviour
 {
 	[Header("Character stats")]
 	private static Character instance;
-	[SerializeField] private List<string> subjects = new List<string>();
-
-	[SerializeField] private Interest[] interests;
+	[SerializeField] private int interestsCount;
+	[SerializeField] private Interest mainInterest;
+   [SerializeField] private Interest[] interests;
 	private int LoveInterest { get { return LoveInterest; } set => LoveInterest = value; }
 	private int Drunkness { get { return Drunkness; } set => Drunkness = value; }
 
@@ -29,42 +29,37 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		interests = new Interest[subjects.Count];
-		for (int i = 0; i < subjects.Count; i++)
+		interests = new Interest[interestsCount];
+	}
+
+	private void Start()
+	{
+		RandomizeInterests();
+	}
+
+	private void RandomizeInterests()
+	{
+		interests[0] = mainInterest;
+		for (int i = 1; i < interestsCount; i++)
 		{
-			Interest interest = new Interest
+			Interest interest = InterestHolder.Instance.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
+			while (FindInterest(interest) != -1)
 			{
-				subject = subjects[i],
-				value = 0
-			};
+				interest = InterestHolder.Instance.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
+			}
 			interests[i] = interest;
 		}
 	}
 
-	public bool CheckLikness(string subject, int value)
+	public bool CheckLikeness(Interest interest)
 	{
-		if (interests[FindInterest(subject)].value >= value)
+		if (interests[FindInterest(interest)].Likes == true)
 		{
 			return true;
 		}
 		return false;
 	}
 
-	public void ChangeLikeness(string subject, int changedValue)
-	{
-		int interestIndex = FindInterest(subject);
-		interests[interestIndex].value += changedValue;
-
-		if (changedValue > 10)
-		{
-			interests[interestIndex].value = 10;
-		}
-
-		if (changedValue < 0)
-		{
-			interests[interestIndex].value = 0;
-		}
-	}
 
 	public void ChangeLoveinterest(char calculation)
 	{
@@ -93,23 +88,15 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	private int FindInterest(string subject)
+	private int FindInterest(Interest interest)
 	{
 		for (int i = 0; i < interests.Length; i++)
 		{
-			Interest interest = interests[i];
-			if (interest.subject == subject)
+			if (interests[i] == interest)
 			{
 				return i;
 			}
 		}
 		return -1;
 	}
-
-}
-
-[Serializable] public struct Interest
-{
-	public string subject;
-	public int value;
 }
