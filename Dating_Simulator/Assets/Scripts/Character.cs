@@ -8,10 +8,11 @@ public class Character : MonoBehaviour
 {
 	[Header("Character stats")]
 	private static Character instance;
-	[SerializeField] private Dictionary<string, int> likeness = new Dictionary<string, int>();
-	private readonly List<string> subjects = new List<string>();
+	[SerializeField] private List<string> subjects = new List<string>();
 
-	private int loveIntrest = 0;
+	[SerializeField] private Interest[] interests;
+	private int LoveInterest { get { return LoveInterest; } set => LoveInterest = value; }
+	private int Drunkness { get { return Drunkness; } set => Drunkness = value; }
 
 	public static Character Instance
 	{
@@ -28,40 +29,87 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		foreach (string s in subjects)
+		interests = new Interest[subjects.Count];
+		for (int i = 0; i < subjects.Count; i++)
 		{
-			likeness.Add(s, 0);
+			Interest interest = new Interest
+			{
+				subject = subjects[i],
+				value = 0
+			};
+			interests[i] = interest;
 		}
 	}
 
-	private bool CheckLikness(string subject, int value)
+	public bool CheckLikness(string subject, int value)
 	{
-		if (likeness.TryGetValue(subject, out int likenesV) == true && likenesV >= value)
+		if (interests[FindInterest(subject)].value >= value)
 		{
 			return true;
 		}
 		return false;
 	}
 
-	private void ChangeLikeness(string subject, int changedValue)
+	public void ChangeLikeness(string subject, int changedValue)
 	{
-		likeness[subject] += changedValue;
+		int interestIndex = FindInterest(subject);
+		interests[interestIndex].value += changedValue;
 
 		if (changedValue > 10)
 		{
-			likeness[subject] = 10;
+			interests[interestIndex].value = 10;
 		}
 
 		if (changedValue < 0)
 		{
-			likeness[subject] = 0;
+			interests[interestIndex].value = 0;
 		}
 	}
 
-	private void ChangeLoveinterest()
+	public void ChangeLoveinterest(char calculation)
 	{
-		loveIntrest++;
+		if (calculation.Equals('+') || calculation.Equals('-'))
+		{
+			switch (calculation)
+			{
+				case '+':
+					LoveInterest++;
+					break;
+
+				case '-':
+					LoveInterest--;
+					break;
+			}
+		}
 		// if its over high enough at the end of the game you get another date...
 	}
+	public void Drink()
+	{
+		Drunkness++;
 
+		if (Drunkness >= 8)
+		{
+			//Falling over, saying something weird or something else?
+		}
+	}
+
+	private int FindInterest(string subject)
+	{
+		for (int i = 0; i < interests.Length; i++)
+		{
+			Interest interest = interests[i];
+			if (interest.subject == subject)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+}
+
+[Serializable] public struct Interest
+{
+	public string subject;
+	public int value;
 }
