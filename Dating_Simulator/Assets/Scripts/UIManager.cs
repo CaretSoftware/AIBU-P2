@@ -6,35 +6,51 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text textElement;
     [SerializeField] private AudioClip dialogueSound;
     private AudioManager audioManager;
-    private string textInputed;
     private string textToOutput;
-    
+
+    private static UIManager instance;
+    public static UIManager Instance { get { return instance; } }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioManager = AudioManager.Instance;
-        textInputed = "This is just a test to see how it looks to write out";
-        StartCoroutine(WriteDialogue());
+        audioManager = AudioManager.Instance;      
     }
 
-    void DisplayDialogue()
+    void DisplayDialogue(TMP_Text questionTextBox)
     {
-        textElement.text = textToOutput;
+        questionTextBox.text = textToOutput;        
         audioManager.PlaySound(dialogueSound);
     }
 
-    IEnumerator WriteDialogue()
+    public void StartWriteOutQuestion(string question, TMP_Text questionTextBox)
     {
-        textElement.text = "";
-        foreach (char letter in textInputed.ToCharArray())
+        StartCoroutine(WriteDialogue(question, questionTextBox));
+    }
+
+    public IEnumerator WriteDialogue(string question, TMP_Text questionTextBox)
+    {
+        textToOutput = "";
+        questionTextBox.text = "";
+        foreach (char letter in question.ToCharArray())
         {
             textToOutput += letter;
-            DisplayDialogue();
+            DisplayDialogue(questionTextBox);
             yield return new WaitForSeconds(0.05f);
         }                        
     }
+
 }
