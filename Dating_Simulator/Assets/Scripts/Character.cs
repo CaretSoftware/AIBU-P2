@@ -11,8 +11,12 @@ public class Character : MonoBehaviour
 	[SerializeField] private int interestsCount;
 	[SerializeField] private Interest[] mainInterest;
    [SerializeField] private Interest[] interests;
-	private int LoveInterest { get { return LoveInterest; } set => LoveInterest = value; }
-	private int Drunkness { get { return Drunkness; } set => Drunkness = value; }
+	private InterestHolder interestHolder;
+
+	public int Mood { get { return Mood; } set => Mood = value; }
+	public int Humour { get { return Humour; } set => Humour = value; }
+	public int Interested { get { return Interested; } set => Interested = value; }
+	public int Drunkness { get { return Drunkness; } set => Drunkness = value; }
 
 	public static Character Instance
 	{
@@ -30,6 +34,7 @@ public class Character : MonoBehaviour
 	private void Awake()
 	{
 		interests = new Interest[interestsCount];
+		interestHolder = InterestHolder.Instance;
 	}
 
 	private void Start()
@@ -48,42 +53,30 @@ public class Character : MonoBehaviour
 
 		for (; i < interestsCount; i++)
 		{
-			Interest interest = InterestHolder.Instance.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
+			Interest interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
 			while (FindInterest(interest) != -1)
 			{
-				interest = InterestHolder.Instance.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
+				interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
 			}
 			interests[i] = interest;
 		}
-	}
 
-	public bool CheckLikeness(Interest interest)
-	{
-		if (interests[FindInterest(interest)].Likes == true)
-		{
-			return true;
-		}
-		return false;
+		Humour = UnityEngine.Random.Range(-1, 2);
 	}
 
 
-	public void ChangeLoveinterest(char calculation)
+	public void ChangeLoveinterest(int changedValue)
 	{
-		if (calculation.Equals('+') || calculation.Equals('-'))
-		{
-			switch (calculation)
-			{
-				case '+':
-					LoveInterest++;
-					break;
+		Interested += changedValue;
+		// How intrested/bored the date thinks of you.
+	}
 
-				case '-':
-					LoveInterest--;
-					break;
-			}
-		}
+	public void ChangeMood(int changedValue)
+	{
+		Mood += changedValue;
 		// if its over high enough at the end of the game you get another date...
 	}
+
 	public void Drink()
 	{
 		Drunkness++;
@@ -105,4 +98,5 @@ public class Character : MonoBehaviour
 		}
 		return -1;
 	}
+
 }
