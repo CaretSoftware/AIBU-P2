@@ -45,13 +45,13 @@ public class Character : MonoBehaviour
 	private void RandomizeInterests()
 	{
 		int i = 0;
-		if (mainInterest.Length > 0)
+		if (mainInterest.Length > 0) //Picks one main intrest based on the date
 		{
 			i++;
 			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Length)];
 		}
 
-		for (; i < interestsCount; i++)
+		for (; i < interestsCount; i++) //Randomizes the other intrests
 		{
 			Interest interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
 			while (FindInterest(interest) != -1)
