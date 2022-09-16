@@ -3209,7 +3209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e5d63ac90a33e4993dc5e8529d0311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textElement: {fileID: 0}
   dialogueSound: {fileID: 0}
 --- !u!4 &2091050863
 Transform:
