@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
 	[Header("Character stats")]
 	private static Character instance;
 	[SerializeField] private int interestsCount;
-	[SerializeField] private Interest[] mainInterest;
+	[SerializeField] private List<Interest> mainInterest;
    [SerializeField] private Interest[] interests;
 	private InterestHolder interestHolder;
 
@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
 	private void Awake()
 	{
 		interests = new Interest[interestsCount];
-		interestHolder = InterestHolder.Instance;
+		interestHolder = InterestHolder.Instance; 
 	}
 
 	private void Start()
@@ -50,23 +50,23 @@ public class Character : MonoBehaviour
 
 	public void AddInterest(Interest interest)
 	{
-		for (int i = 0; i < mainInterest.Length; i++)
+		for (int i = 0; i < mainInterest.Count; i++)
 		{
-			if (mainInterest[i] == null)
+			if (mainInterest[i] == interest)
 			{
-				mainInterest[i] = interest;
+				return;
 			}
-			break;
 		}
+		mainInterest.Add(interest);
 	}
 
-	private void RandomizeInterests()
+	public void RandomizeInterests()
 	{
 		int i = 0;
-		if (mainInterest.Length > 0) //Picks one main intrest based on the date
+		if (mainInterest.Count > 0) //Picks one main intrest based on the date
 		{
 			i++;
-			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Length)];
+			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Count)];
 		}
 
 		for (; i < interestsCount; i++) //Randomizes the other intrests
