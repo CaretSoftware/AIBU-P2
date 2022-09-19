@@ -13,10 +13,15 @@ public class Character : MonoBehaviour
    [SerializeField] private Interest[] interests;
 	private InterestHolder interestHolder;
 
-	public int Mood { get { return Mood; } set => Mood = value; }
-	public int Humour { get { return Humour; } set => Humour = value; }
-	public int Interested { get { return Interested; } set => Interested = value; }
-	public int Drunkness { get { return Drunkness; } set => Drunkness = value; }
+	private int mood = 0;
+	private int humour = 0;
+	private int interested = 0;
+	private int drunkness = 0;
+
+	public int Mood { get { return mood; } set { mood = value; } }
+	public int Humour { get { return humour; } set { humour = value; } }
+	public int Interested { get { return interested; } set { interested = value; } }
+	public int Drunkness { get { return drunkness; } set { drunkness = value; } }
 
 	public static Character Instance
 	{
@@ -40,6 +45,7 @@ public class Character : MonoBehaviour
 	private void Start()
 	{
 		RandomizeInterests();
+		ChangeMood("Angry");
 	}
 
 	private void RandomizeInterests()
@@ -60,26 +66,25 @@ public class Character : MonoBehaviour
 			}
 			interests[i] = interest;
 		}
-
 		Humour = UnityEngine.Random.Range(-1, 2);
 	}
 
 
 	public void ChangeLoveinterest(int changedValue)
 	{
-		Interested += changedValue;
+		interested += changedValue;
 		// How intrested/bored the date thinks of you.
 	}
 
 	public void ChangeMood(int changedValue)
 	{
-		Mood += changedValue;
+		mood += changedValue;
 		// if its over high enough at the end of the game you get another date...
 	}
 
 	public void Drink()
 	{
-		Drunkness++;
+		drunkness++;
 
 		if (Drunkness >= 8)
 		{
@@ -99,4 +104,79 @@ public class Character : MonoBehaviour
 		return -1;
 	}
 
+	public void ChangeMood(string change)
+	{
+		SetInactive();
+		switch (change)
+		{
+			case "Happy":
+			ChangeHappy();
+			break;
+
+			case "Bored":
+			ChangeBored();
+			break;
+
+			case "Embaressed":
+			ChangeEmbaressed();
+			break;
+
+			case "Flirty":
+			ChangeFlirty();
+			break;
+
+			case "Neutral":
+			ChangeNeutral();
+			break;
+
+			case "Angry":
+			ChangeAngry();
+			break;
+		}
+	}
+
+	private void ChangeEmbaressed()
+	{
+		Transform t = transform.Find("Embaressed");
+		t.gameObject.SetActive(true);
+	}
+
+	private void ChangeAngry()
+	{
+		Transform t = transform.Find("Angry");
+		t.gameObject.SetActive(true);
+	}
+	private void ChangeFlirty()
+	{
+		Transform t = transform.Find("Flirty");
+		t.gameObject.SetActive(true);
+	}
+	private void ChangeBored()
+	{
+		Transform t = transform.Find("Bored");
+		t.gameObject.SetActive(true);
+	}
+	private void ChangeNeutral()
+	{
+		Transform t = transform.Find("Neutral");
+		t.gameObject.SetActive(true);
+	}
+	private void ChangeHappy()
+	{
+		Transform t = transform.Find("Happy");
+		t.gameObject.SetActive(true);
+	}
+
+	private void SetInactive()
+	{
+		for (int i = 0; i < transform.childCount; i++)
+		{
+			GameObject gO = transform.GetChild(i).gameObject;
+			if (gO.activeSelf && gO.transform.name != "Body")
+			{
+				gO.SetActive(false);
+				break;
+			}
+		}
+	}
 }
