@@ -7,6 +7,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private AudioClip dialogueSound;
+    [SerializeField] private TMP_Text questionTextBox;
     private AudioManager audioManager;
     private string textToOutput;
 
@@ -22,33 +23,28 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        audioManager = AudioManager.Instance;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        audioManager = AudioManager.Instance;      
-    }
-
-    void DisplayDialogue(TMP_Text questionTextBox)
+    void DisplayDialogue()
     {
         questionTextBox.text = textToOutput;        
-        audioManager.PlaySound(dialogueSound);
+        //audioManager.PlaySound(dialogueSound);
     }
 
-    public void StartWriteOutQuestion(string question, TMP_Text questionTextBox)
+    public void StartWriteOutQuestion(string question)
     {
-        StartCoroutine(WriteDialogue(question, questionTextBox));
+        StartCoroutine(WriteDialogue(question));
     }
 
-    public IEnumerator WriteDialogue(string question, TMP_Text questionTextBox)
+    public IEnumerator WriteDialogue(string question)
     {
         textToOutput = "";
         questionTextBox.text = "";
         foreach (char letter in question.ToCharArray())
         {
             textToOutput += letter;
-            DisplayDialogue(questionTextBox);
+            DisplayDialogue();
             yield return new WaitForSeconds(0.05f);
         }                        
     }

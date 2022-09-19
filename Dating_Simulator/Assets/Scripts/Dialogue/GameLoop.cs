@@ -8,30 +8,27 @@ using Random = System.Random;
 using TMPro;
 
 public class GameLoop : MonoBehaviour {
-	public delegate void DialogueText(string text, string[] choises);
+	public delegate void DialogueText(string text);
 	public delegate void ChoiceText(string[] text);
 	public delegate void SetChoiceIndex(int  index);
 
-	public DialogueText   dialogueText;
-	public ChoiceText     choiceText;
-	public SetChoiceIndex setChoiceIndex;
+	public static DialogueText   dialogueText;
+	public static ChoiceText choiceText;
+	public static SetChoiceIndex setChoiceIndex;
 
 	private                  Dia             _dialogue;
 	private static           int             _choiceIndex = -1;
 	private readonly         Random          _random      = new Random(123);
-	[SerializeField] private TextMeshProUGUI dialogue;
-	[SerializeField] private TextMeshProUGUI choice;
-	[SerializeField] private DialogueOptions dialogueOptions;
 	private                  StringBuilder   _sb = new StringBuilder();
 
 	private void Awake() {
 		dialogueText   += DisplayDialogue;
 		choiceText     += DisplayChoices;
-		setChoiceIndex =  SetChoice;
+		//setChoiceIndex =  SetChoice;
 	}
 
 	private void Start() {
-		Loop();
+		//Loop();
 	}
 
 	private void Update() {
@@ -52,9 +49,9 @@ public class GameLoop : MonoBehaviour {
 			_choiceIndex = -1;
 
 			// Display Dialogue
-			DisplayDialogue(_dialogue.text, _dialogue.ChoiceText);
+			DisplayDialogue(_dialogue.text);
 			// Retrieve Dialogue Choices
-			//DisplayChoices(_dialogue.ChoiceText);
+			DisplayChoices(_dialogue.ChoiceText);
 
 			while (_choiceIndex < 0) { //	await until dialog choice comes back with index
 				await Task.Yield();
@@ -76,7 +73,7 @@ public class GameLoop : MonoBehaviour {
 
 	
 
-	private Dia GetNextDialogue() {
+	public Dia GetNextDialogue() {
 		List<Dia> dialogues = Query.NewQuery(this).OrderByDescending(x => x.rule.Length).ToList();
 
 		if (dialogues.Count > 0)
@@ -86,27 +83,16 @@ public class GameLoop : MonoBehaviour {
 	}
 
 	// DEBUG placeholder for call to Delegates
-	private void DisplayDialogue(string text, string[] choises) {
-		if (dialogue == null) return;
-		dialogueOptions.WriteTextToTheDialogueOptions(text, choises);
-		//dialogue.text = text;
+	private void DisplayDialogue(string text) {
+		dialogueText(text);
 	}
 
 	// DEBUG placeholder for call to Delegates
 	private void DisplayChoices(string[] texts) {
-		if (choice == null) return;
-		
-		_sb.Clear();
-		for (int i = 0; i < texts.Length; i++) {
-			_sb.Append(texts[i]);
-			if (i != texts.Length - 1)
-				_sb.Append("\n");
-		}
-		
-		choice.text = _sb.ToString();
+		choiceText(texts);
 	}
 
-	private static void SetChoice(int index) {
+	public static void SetChoice(int index) {
 		_choiceIndex = index;
 	}
 }
