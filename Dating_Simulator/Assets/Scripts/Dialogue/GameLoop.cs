@@ -22,13 +22,13 @@ public class GameLoop : MonoBehaviour {
 	private                  StringBuilder   _sb = new StringBuilder();
 
 	private void Awake() {
-		dialogueText   += DisplayDialogue;
-		choiceText     += DisplayChoices;
-		//setChoiceIndex =  SetChoice;
+		// dialogueText   += DisplayDialogue;
+		// choiceText     += DisplayChoices;
+		setChoiceIndex =  SetChoice;
 	}
 
 	private void Start() {
-		//Loop();
+		Loop();
 	}
 
 	private void Update() {
