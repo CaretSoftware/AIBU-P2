@@ -17,12 +17,12 @@ public class DialogueOptions : MonoBehaviour
 
     private void Start()
     {
-        ShowNextDialogue();
+        //ShowNextDialogue();
     }
 
     public void ShowNextDialogue()
     {        
-        switch (questionToShow)
+/*        switch (questionToShow)
         {
             case 1:
                 WriteTextToTheDialogueOptions("How old are you?", answersQ1);
@@ -36,7 +36,7 @@ public class DialogueOptions : MonoBehaviour
                 WriteTextToTheDialogueOptions("Do you like video games?", answersQ3);
                 break;
 
-        }
+        }*/
     }
 
     //Denna metod borde nog flyttas eller tas bort beroende på hur din dialog fungerar Patrik

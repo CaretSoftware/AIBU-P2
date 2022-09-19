@@ -8,7 +8,7 @@ using Random = System.Random;
 using TMPro;
 
 public class GameLoop : MonoBehaviour {
-	public delegate void DialogueText(string text);
+	public delegate void DialogueText(string text, string[] choises);
 	public delegate void ChoiceText(string[] text);
 	public delegate void SetChoiceIndex(int  index);
 
@@ -21,6 +21,7 @@ public class GameLoop : MonoBehaviour {
 	private readonly         Random          _random      = new Random(123);
 	[SerializeField] private TextMeshProUGUI dialogue;
 	[SerializeField] private TextMeshProUGUI choice;
+	[SerializeField] private DialogueOptions dialogueOptions;
 	private                  StringBuilder   _sb = new StringBuilder();
 
 	private void Awake() {
@@ -51,9 +52,9 @@ public class GameLoop : MonoBehaviour {
 			_choiceIndex = -1;
 
 			// Display Dialogue
-			DisplayDialogue(_dialogue.text);
+			DisplayDialogue(_dialogue.text, _dialogue.ChoiceText);
 			// Retrieve Dialogue Choices
-			DisplayChoices(_dialogue.ChoiceText);
+			//DisplayChoices(_dialogue.ChoiceText);
 
 			while (_choiceIndex < 0) { //	await until dialog choice comes back with index
 				await Task.Yield();
@@ -85,9 +86,10 @@ public class GameLoop : MonoBehaviour {
 	}
 
 	// DEBUG placeholder for call to Delegates
-	private void DisplayDialogue(string text) {
+	private void DisplayDialogue(string text, string[] choises) {
 		if (dialogue == null) return;
-		dialogue.text = text;
+		dialogueOptions.WriteTextToTheDialogueOptions(text, choises);
+		//dialogue.text = text;
 	}
 
 	// DEBUG placeholder for call to Delegates
