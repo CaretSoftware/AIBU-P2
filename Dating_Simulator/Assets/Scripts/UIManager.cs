@@ -2,34 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Text textElement;
-    private string textInputed;
+    [SerializeField] private AudioClip dialogueSound;
+    private AudioManager audioManager;
     private string textToOutput;
-    private int textLength;
+
+    private static UIManager instance;
+    public static UIManager Instance { get { return instance; } }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
-    {      
-        textInputed = "This is just a test to see how it looks to write out";
-        textLength = textInputed.Length;
-        StartCoroutine("WriteDialogue");
+    {
+        audioManager = AudioManager.Instance;      
     }
 
-    void DisplayDialogue()
+    void DisplayDialogue(TMP_Text questionTextBox)
     {
-        textElement.text = textToOutput;
+        questionTextBox.text = textToOutput;        
+        audioManager.PlaySound(dialogueSound);
     }
 
-    IEnumerator WriteDialogue()
+    public void StartWriteOutQuestion(string question, TMP_Text questionTextBox)
     {
-        for (int i = 0; i < textLength; i++)
+        StartCoroutine(WriteDialogue(question, questionTextBox));
+    }
+
+    public IEnumerator WriteDialogue(string question, TMP_Text questionTextBox)
+    {
+        textToOutput = "";
+        questionTextBox.text = "";
+        foreach (char letter in question.ToCharArray())
         {
-            textToOutput += textInputed[i].ToString();
-            DisplayDialogue();
+            textToOutput += letter;
+            DisplayDialogue(questionTextBox);
             yield return new WaitForSeconds(0.05f);
-        }      
+        }                        
     }
+
 }
