@@ -48,6 +48,18 @@ public class Character : MonoBehaviour
 		ChangeMood("Angry");
 	}
 
+	public void AddInterest(Interest interest)
+	{
+		for (int i = 0; i < mainInterest.Length; i++)
+		{
+			if (mainInterest[i] == null)
+			{
+				mainInterest[i] = interest;
+			}
+			break;
+		}
+	}
+
 	private void RandomizeInterests()
 	{
 		int i = 0;
