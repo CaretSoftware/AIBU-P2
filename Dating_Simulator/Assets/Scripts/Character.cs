@@ -107,64 +107,30 @@ public class Character : MonoBehaviour
 	public void ChangeMood(string change)
 	{
 		SetInactive();
+		Transform t = transform.Find(change);
+		t.gameObject.SetActive(true);
 		switch (change)
 		{
 			case "Happy":
-			ChangeHappy();
-			break;
-
-			case "Bored":
-			ChangeBored();
-			break;
-
-			case "Embaressed":
-			ChangeEmbaressed();
-			break;
-
-			case "Flirty":
-			ChangeFlirty();
-			break;
-
-			case "Neutral":
-			ChangeNeutral();
+				mood++;
 			break;
 
 			case "Angry":
-			ChangeAngry();
-			break;
+				mood--;
+				break;
+
+			case "Embarresed":
+				// not sure if it should be a variable
+				break;
+
+			case "Bored":
+				interested--;
+				break;
+
+			case "Flirty":
+				interested++;
+				break;
 		}
-	}
-
-	private void ChangeEmbaressed()
-	{
-		Transform t = transform.Find("Embaressed");
-		t.gameObject.SetActive(true);
-	}
-
-	private void ChangeAngry()
-	{
-		Transform t = transform.Find("Angry");
-		t.gameObject.SetActive(true);
-	}
-	private void ChangeFlirty()
-	{
-		Transform t = transform.Find("Flirty");
-		t.gameObject.SetActive(true);
-	}
-	private void ChangeBored()
-	{
-		Transform t = transform.Find("Bored");
-		t.gameObject.SetActive(true);
-	}
-	private void ChangeNeutral()
-	{
-		Transform t = transform.Find("Neutral");
-		t.gameObject.SetActive(true);
-	}
-	private void ChangeHappy()
-	{
-		Transform t = transform.Find("Happy");
-		t.gameObject.SetActive(true);
 	}
 
 	private void SetInactive()
