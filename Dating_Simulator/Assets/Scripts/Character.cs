@@ -38,14 +38,16 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		interests = new Interest[interestsCount];
 		interestHolder = InterestHolder.Instance; 
+		interests = new Interest[interestsCount];
 	}
 
 	private void Start()
 	{
+		/*
 		RandomizeInterests();
 		ChangeMood("Angry");
+		*/
 	}
 
 	public void AddInterest(Interest interest)

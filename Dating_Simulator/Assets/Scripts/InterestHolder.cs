@@ -20,8 +20,8 @@ public class InterestHolder : MonoBehaviour
 		}
 	}
 
-	void Awake()
-    {
-        interests = GetComponentsInChildren<Interest>();	
-    }
+	public void SetIntrests()
+	{
+		interests = GetComponentsInChildren<Interest>();	
+	}
 }
