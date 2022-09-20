@@ -1209,7 +1209,9 @@ public class DialogueContainer {
 		/* GOOD_LOOKING_RESPONSE_ANGRY */
 		new Dia(rule: new Rule(new[] {
 					("goodLooking", new Criterion(2)),
-					(angry, new Criterion(2, 100)),
+					(angry, new Criterion(2, int.MaxValue)),
+					(angry, new Criterion(2, int.MaxValue)),
+					(angry, new Criterion(2, int.MaxValue)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Is appearance really all you care about?",
@@ -1227,8 +1229,8 @@ public class DialogueContainer {
 		/* GOOD_LOOKING_RESPONSE_FLIRTY */
 		new Dia(rule: new Rule(new[] {
 					("goodLooking", new Criterion(2)),
-					(flirty, new Criterion(4, 100)),
-					(angry, new Criterion(0,  4)),
+					(flirty, new Criterion(0, 100)),
+					(flirty, new Criterion(0, 100)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Well, here I am.",
@@ -1239,6 +1241,23 @@ public class DialogueContainer {
 					("goodLooking", 1, Query.CompType.Increment),
 					("return", -1, Query.CompType.Set),
 					(flirty, 1, Query.CompType.Increment),
+					("paying", 1, Query.CompType.Set),
+				}
+				),
+
+		/* GOOD_LOOKING_RESPONSE_FLIRTY */
+		new Dia(rule: new Rule(new[] {
+					("goodLooking", new Criterion(2)),
+				}),
+				speaker: $"{_datesName}",
+				text: $"Gotcha.",
+				choiceText: new string[] {
+					$"{_next}"
+				},
+				writeBacks: new[] {
+					("goodLooking", 1, Query.CompType.Increment),
+					("return", -1, Query.CompType.Set),
+					(embarrassed, 1, Query.CompType.Increment),
 					("paying", 1, Query.CompType.Set),
 				}
 				),
@@ -1338,14 +1357,14 @@ public class DialogueContainer {
 					"Ask date to split the bill"
 				},
 				writeBacks: new[] {
-					("payingAllOfIt", 1, Query.CompType.Set),
-					("splitTheBill", 1, Query.CompType.Set),
+					("paying", 3, Query.CompType.Set),
+					("paying", 4, Query.CompType.Set),
 				}
 				),
 		
 		/* <105_LET_ME_PAY */
 		new Dia(rule: new Rule(new[] {
-					("payingAllOfIt", new Criterion(1)),
+					("paying", new Criterion(3)),
 				}),
 				speaker: $"You",
 				text: $"Let me pay, it was a pleasure meeting you tonight.",
@@ -1376,7 +1395,7 @@ public class DialogueContainer {
 		
 		/* <105_SPLIT_BILL */
 		new Dia(rule: new Rule(new[] {
-					("splitTheBill", new Criterion(1)),
+					("paying", new Criterion(4)),
 				}),
 				speaker: $"You",
 				text: $"Is it okay if we split the bill tonight?",
@@ -1384,7 +1403,7 @@ public class DialogueContainer {
 					$"{_next}",
 				},
 				writeBacks: new[] {
-					("splitTheBill", 1, Query.CompType.Increment),
+					("splitTheBill", 1, Query.CompType.Set),
 					(neutral, 1, Query.CompType.Increment),
 					(angry, 1, Query.CompType.Increment),
 				}
@@ -1392,7 +1411,7 @@ public class DialogueContainer {
 		
 		/* <105_SPLIT_BILL_ANGRY_RESPONSE */
 		new Dia(rule: new Rule(new[] {
-					("splitTheBill", new Criterion(2)),
+					("splitTheBill", new Criterion(1)),
 					(angry, new Criterion(5, int.MaxValue)),
 				}),
 				speaker: $"{_datesName}",
@@ -1488,8 +1507,8 @@ public class DialogueContainer {
 		
 		/* ASKED_DATE_TO_PAY_ANGRY */
 		new Dia(rule: new Rule(new[] {
-					("cannotAfford" ,new Criterion(3)),
-					(angry ,new Criterion(5, int.MaxValue)),
+					("askDateToPay" ,new Criterion(1)),
+					(angry ,new Criterion(2, int.MaxValue)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"This has to be a joke. I’m going to have nightmares about this date for the rest of my life.",
@@ -1505,8 +1524,7 @@ public class DialogueContainer {
 		
 		/* ASKED_DATE_TO_PAY_NEUTRAL */
 		new Dia(rule: new Rule(new[] {
-					("cannotAfford" ,new Criterion(3)),
-					(angry ,new Criterion(int.MinValue, 5)),
+					("askDateToPay" ,new Criterion(1)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Sure I can pay this time.",
@@ -1538,6 +1556,9 @@ public class DialogueContainer {
 		
 		
 		
+		
+		
+
 		/* ENDING 1/7 WORST_DATE_EVER */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
