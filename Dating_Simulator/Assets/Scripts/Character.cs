@@ -8,18 +8,14 @@ public class Character : MonoBehaviour
 {
 	[Header("Character stats")]
 	private static Character instance;
-	[SerializeField] private int interestsCount;
-	[SerializeField] private List<Interest> mainInterest;
    [SerializeField] private Interest[] interests;
 	private InterestHolder interestHolder;
 
 	private int mood = 0;
-	private int humour = 0;
 	private int interested = 0;
 	private int drunkness = 0;
 
 	public int Mood { get { return mood; } set { mood = value; } }
-	public int Humour { get { return humour; } set { humour = value; } }
 	public int Interested { get { return interested; } set { interested = value; } }
 	public int Drunkness { get { return drunkness; } set { drunkness = value; } }
 
@@ -39,7 +35,6 @@ public class Character : MonoBehaviour
 	private void Awake()
 	{
 		interestHolder = InterestHolder.Instance; 
-		interests = new Interest[interestsCount];
 	}
 
 	private void Start()
@@ -48,39 +43,6 @@ public class Character : MonoBehaviour
 		RandomizeInterests();
 		ChangeMood("Angry");
 		*/
-	}
-
-	public void AddInterest(Interest interest)
-	{
-		for (int i = 0; i < mainInterest.Count; i++)
-		{
-			if (mainInterest[i] == interest)
-			{
-				return;
-			}
-		}
-		mainInterest.Add(interest);
-	}
-
-	public void RandomizeInterests()
-	{
-		int i = 0;
-		if (mainInterest.Count > 0) //Picks one main intrest based on the date
-		{
-			i++;
-			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Count)];
-		}
-
-		for (; i < interestsCount; i++) //Randomizes the other intrests
-		{
-			Interest interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
-			while (FindInterest(interest) != -1)
-			{
-				interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
-			}
-			interests[i] = interest;
-		}
-		Humour = UnityEngine.Random.Range(-1, 2);
 	}
 
 
@@ -106,18 +68,6 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	private int FindInterest(Interest interest)
-	{
-		for (int i = 0; i < interests.Length; i++)
-		{
-			if (interests[i] == interest)
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-
 	public void ChangeMood(string change)
 	{
 		SetInactive();
@@ -133,7 +83,7 @@ public class Character : MonoBehaviour
 				mood--;
 				break;
 
-			case "Embarresed":
+			case "Embarrassed":
 				// not sure if it should be a variable
 				break;
 
@@ -145,6 +95,12 @@ public class Character : MonoBehaviour
 				interested++;
 				break;
 		}
+	}
+
+	public void TakeIntrests(int person)
+	{
+		interests = interestHolder.interests[person];
+		print(person);
 	}
 
 	private void SetInactive()
