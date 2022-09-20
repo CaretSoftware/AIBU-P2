@@ -13,6 +13,11 @@ public class InputManager : MonoBehaviour
     // What should happen when you have clicked a dialogue option
     public void ClickedDialogue(int buttonPressed)
     {
+        if (buttonPressed == 4)
+        {
+            UIManager.Instance.SkipDialogueWriteOut();
+            return;
+        }
         setChoiceIndex(buttonPressed);
     }
 
