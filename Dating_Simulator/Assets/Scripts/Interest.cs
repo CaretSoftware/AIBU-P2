@@ -6,7 +6,7 @@ public class Interest : MonoBehaviour
 {
 	public virtual void AddInterest()
 	{
-		Character.Instance.AddInterest(this);
+		InterestHolder.Instance.AddInterest(this);
 		//print(this.name);
 	}
 }
