@@ -24,4 +24,9 @@ public class InterestHolder : MonoBehaviour
 	{
 		interests = GetComponentsInChildren<Interest>();	
 	}
+
+	public void Randomize()
+	{
+		Character.Instance.RandomizeInterests();
+	}
 }
