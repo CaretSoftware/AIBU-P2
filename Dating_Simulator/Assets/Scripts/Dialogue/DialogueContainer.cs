@@ -197,7 +197,6 @@ public class DialogueContainer {
 
 
 		/* YELLED JOKE REACTION */
-		// *	interests = 0, !likesJokes, joke = 5,
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(0)),
 					(joke, new Criterion(5)),
@@ -218,7 +217,6 @@ public class DialogueContainer {
 				),
 
 		/* GIVE COMPLIMENT */
-		// *	!interests, compliment = 1,  
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(0)),
 					(compliment, new Criterion(1)),
@@ -234,7 +232,6 @@ public class DialogueContainer {
 				),
 
 		/* RECEIVE COMPLIMENT */
-		// *	interests = 0, compliment = 2,  
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(0)),
 					(compliment, new Criterion(2)),
@@ -252,7 +249,6 @@ public class DialogueContainer {
 
 
 		/* SELF CENTERED */
-		// *	interests = 0, selfInterest = 1,
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(0)),
 					(selfInterest, new Criterion(1)),
@@ -269,7 +265,6 @@ public class DialogueContainer {
 				),
 
 		/* SELF CENTERED RESPONSE */
-		// *	interests = 0, selfInterest = 2,
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(0)),
 					(selfInterest, new Criterion(2)),
@@ -287,7 +282,6 @@ public class DialogueContainer {
 				),
 
 		/* INTERESTS */
-		// *	interests = 1
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(1)),
 				}),
@@ -306,7 +300,6 @@ public class DialogueContainer {
 				),
 
 		/* COMMON INTERESTS */
-		// *	interests = 2,
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(2)),
 				}),
@@ -316,14 +309,13 @@ public class DialogueContainer {
 					$"{_next}",
 				},
 				writeBacks: new[] {
-					(interest, int.MaxValue, Query.CompType.Set),
+					(interest, -1, Query.CompType.Set),
 					(happy, 1, Query.CompType.Increment),
 					("waiter", 1, Query.CompType.Set),
 				}
 				),
 
 		/* DATES INTERESTS */
-		// *	interest = 3,
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(3)),
 				}),
@@ -340,7 +332,6 @@ public class DialogueContainer {
 				),
 
 		/* YOUR INTERESTS */
-		// *	interest = 4, 
 		new Dia(rule: new Rule(new[] {
 					(interest, new Criterion(4)),
 				}),
@@ -350,15 +341,13 @@ public class DialogueContainer {
 					$"{_next}",
 				},
 				writeBacks: new[] {
-					("angry", 1, Query.CompType.Increment),
+					(angry, 1, Query.CompType.Increment),
 					(interest, -1, Query.CompType.Set), // TODO Debug this! Should value be other than -1 and CompType.Set
 				}
 				),
 
 		/* ORDER FOOD PLAYER */
-		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					// (interest, new Criterion(5)),
 					("waiter", new Criterion(1)),
 				}),
 				speaker: $"You",
@@ -378,10 +367,8 @@ public class DialogueContainer {
 				),
 
 		/* WAITER ORDER SALAD */
-		// *	interest = 5, waiter = 2
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(2)),
+					("waiter", new Criterion(1)),
 					("playerSalad", new Criterion(1)),
 				}),
 				speaker: $"You",
@@ -395,10 +382,8 @@ public class DialogueContainer {
 				),
 
 		/* WAITER ORDER BURGER */
-		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(2)),
+					("waiter", new Criterion(1)),
 					("playerBurger", new Criterion(1)),
 				}),
 				speaker: $"You",
@@ -412,10 +397,8 @@ public class DialogueContainer {
 				),
 
 		/* WAITER ORDER STEAK */
-		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(2)),
+					("waiter", new Criterion(1)),
 					("playerSteak", new Criterion(1)),
 				}),
 				speaker: $"You",
@@ -429,10 +412,8 @@ public class DialogueContainer {
 				),
 
 		/* WAITER ORDER LOBSTER */
-		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(2)),
+					("waiter", new Criterion(1)),
 					("playerLobster", new Criterion(1)),
 				}),
 				speaker: $"You",
@@ -446,10 +427,8 @@ public class DialogueContainer {
 				),
 
 		/* ORDER FOOD DATE */
-		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(3)),
+					("waiter", new Criterion(2)),
 				}),
 				speaker: $"The Waiter",
 				text: $"And what would your lovely date have?",
@@ -470,12 +449,11 @@ public class DialogueContainer {
 		/* WAITER DATE SALAD */
 		// *	interest = 5, waiter = 2
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(3)),
+					("waiter", new Criterion(2)),
 					("dateSalad", new Criterion(1)),
 				}),
 				speaker: $"You",
-				text: $"She'll just have the salad.",
+				text: $"My date will have the salad.",
 				choiceText: new string[] {
 					$"{_next}",
 				},
@@ -487,12 +465,11 @@ public class DialogueContainer {
 		/* WAITER DATE BURGER */
 		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(3)),
+					("waiter", new Criterion(2)),
 					("dateBurger", new Criterion(1)),
 				}),
 				speaker: $"You",
-				text: $"And she'll have the burger.",
+				text: $"The burger please.",
 				choiceText: new string[] {
 					$"{_next}",
 				},
@@ -504,12 +481,11 @@ public class DialogueContainer {
 		/* WAITER DATE STEAK */
 		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(3)),
+					("waiter", new Criterion(2)),
 					("dateSteak", new Criterion(1)),
 				}),
 				speaker: $"You",
-				text: $"And she'll have the steak.",
+				text: $"A steak for the lovely one.",
 				choiceText: new string[] {
 					$"{_next}",
 				},
@@ -521,12 +497,11 @@ public class DialogueContainer {
 		/* WAITER DATE LOBSTER */
 		// *	interest = 5, 
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(3)),
+					("waiter", new Criterion(2)),
 					("dateLobster", new Criterion(1)),
 				}),
 				speaker: $"You",
-				text: $"And she'll have the lobster.",
+				text: $"I think lobster is in season right? One lobster please.",
 				choiceText: new string[] {
 					$"{_next}",
 				},
@@ -538,8 +513,7 @@ public class DialogueContainer {
 		/* EATING ACTIVITY */
 		// *	interest = 5, waiter = 4
 		new Dia(rule: new Rule(new[] {
-					(interest, new Criterion(5)),
-					("waiter", new Criterion(4)),
+					("waiter", new Criterion(3)),
 				}),
 				speaker: $"Your inner voice",
 				text: $"What do I do while we're eating?",
@@ -573,7 +547,7 @@ public class DialogueContainer {
 				}
 				),
 
-		/* ASK FOOD PLAYER_SALAD */
+		/* FOOD DELICIOUS PLAYER_SALAD */
 		// *	interest = 5, waiter = 1, askFood = 1, salad = 1
 		new Dia(rule: new Rule(new[] {
 					("askFood", new Criterion(1)),
@@ -581,6 +555,57 @@ public class DialogueContainer {
 				}),
 				speaker: $"You",
 				text: $"This salad was really delicious!",
+				choiceText: new string[] {
+					$"{_next}",
+				},
+				writeBacks: new[] {
+					("neutral", 1, Query.CompType.Increment),
+					("askFood", 1, Query.CompType.Increment),
+				}
+				),
+		
+		/* FOOD DELICIOUS PLAYER_BURGER */
+		// *	interest = 5, waiter = 1, askFood = 1, salad = 1
+		new Dia(rule: new Rule(new[] {
+					("askFood", new Criterion(1)),
+					("playerBurger", new Criterion(1)),
+				}),
+				speaker: $"You",
+				text: $"This burger was delicious!",
+				choiceText: new string[] {
+					$"{_next}",
+				},
+				writeBacks: new[] {
+					("neutral", 1, Query.CompType.Increment),
+					("askFood", 1, Query.CompType.Increment),
+				}
+				),
+		
+		/* FOOD DELICIOUS PLAYER_STEAK */
+		// *	interest = 5, waiter = 1, askFood = 1, salad = 1
+		new Dia(rule: new Rule(new[] {
+					("askFood", new Criterion(1)),
+					("playerSteak", new Criterion(1)),
+				}),
+				speaker: $"You",
+				text: $"This salad was really delicious!",
+				choiceText: new string[] {
+					$"{_next}",
+				},
+				writeBacks: new[] {
+					("neutral", 1, Query.CompType.Increment),
+					("askFood", 1, Query.CompType.Increment),
+				}
+				),
+		
+		/* FOOD DELICIOUS PLAYER_LOBSTER */
+		// *	interest = 5, waiter = 1, askFood = 1, salad = 1
+		new Dia(rule: new Rule(new[] {
+					("askFood", new Criterion(1)),
+					("playerLobster", new Criterion(1)),
+				}),
+				speaker: $"You",
+				text: $"This lobster was so delicious!",
 				choiceText: new string[] {
 					$"{_next}",
 				},
@@ -708,12 +733,32 @@ public class DialogueContainer {
 					("burger", new Criterion(1)),
 				}),
 				speaker: $"{_datesName}",
-				text: $"It was alright. Nothing special",
+				text: $"It was alright. Nothing special.",
 				choiceText: new string[] {
 					$"{_next}",
 				},
 				writeBacks: new[] {
 					(happy, 1, Query.CompType.Increment),
+					("askFood", 1, Query.CompType.Increment),
+				}
+				),
+		
+		/* ANSWER BURGER PLAYER_LOBSTER */
+		// *	interest = 5, waiter = 1, askFood = 2, burger = 1
+		new Dia(rule: new Rule(new[] {
+					(interest, new Criterion(5)),
+					("waiter", new Criterion(1)),
+					("askFood", new Criterion(2)),
+					("burger", new Criterion(1)),
+					("playerLobster", new Criterion(1)),
+				}),
+				speaker: $"{_datesName}",
+				text: $"It was okay... Nothing special.",
+				choiceText: new string[] {
+					$"{_next}",
+				},
+				writeBacks: new[] {
+					(angry, 1, Query.CompType.Increment),
 					("askFood", 1, Query.CompType.Increment),
 				}
 				),
