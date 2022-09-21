@@ -67,7 +67,7 @@ public class Query {
 		// }
 		// Debug.Log($"query result: {dialogs.Count}\n{debug}");
 		// if (_query.ContainsKey("highestMood"))
-		// 	Debug.Log($"{moods[_query["highestMood"]]} index:{_query["highestMood"]}");
+			// Debug.Log($"{moods[_query["highestMood"]]} index:{_query["highestMood"]}");
 		return dialogs;
 	}
 
@@ -112,7 +112,7 @@ public class Query {
 		}
 
 		if (writeBack.Item1.Equals(DialogueContainer.drinkWine) && playerDrinking != null) {
-			Debug.Log("DRINKING!!!!!!!!!!");
+			// Debug.Log("DRINKING!!!!!!!!!!");
 			playerDrinking.Drink();
 		}
 		
