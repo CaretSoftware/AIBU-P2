@@ -6,13 +6,16 @@ using UnityEngine;
 using Random = System.Random;
 
 public class Query {
-	private static string happy       = "happy";
-	private static string flirty      = "flirty";
-	private static string embarrassed = "embarrassed";
-	private static string angry       = "angry";
-	private static string bored       = "bored";
-	private static string interest    = "interest";
-	private static string likesJokes  = "likesJokes";
+	public delegate void       FaceSetter(string face);
+	public static   FaceSetter faceSetter;
+	public delegate void       SetChoiceIndex(int index);
+	private static  string     happy       = "happy";
+	private static  string     flirty      = "flirty";
+	private static  string     embarrassed = "embarrassed";
+	private static  string     angry       = "angry";
+	private static  string     bored       = "bored";
+	private static  string     interest    = "interest";
+	private static  string     likesJokes  = "likesJokes";
 	private static readonly string[] moods = {
 		DialogueContainer.neutral,
 		DialogueContainer.flirty,
@@ -114,6 +117,8 @@ public class Query {
 		else
 			_query.Add("highestMood", highestMoodIndex);
 
+		faceSetter(moods[highestMoodIndex]);
+		
 		Debug.Log($"HIGHEST MOOD: {highestMoodIndex}");
 	}
 
