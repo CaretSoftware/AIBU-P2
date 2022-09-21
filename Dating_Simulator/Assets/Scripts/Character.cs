@@ -17,9 +17,9 @@ public class Character : MonoBehaviour
 	[SerializeField] private GameObject[] flirtyFaces;
 	[SerializeField] private GameObject[] angryFaces;
 	[SerializeField] private GameObject[] boredFaces;
-	[SerializeField] private GameObject[] embarrassedFaces;
 	[SerializeField] private GameObject[] happyFaces;
-	
+	[SerializeField] private GameObject[] embarrassedFaces;
+
 	private                  int          mood       = 0;
 	private                  int          interested = 0;
 
@@ -63,27 +63,34 @@ public class Character : MonoBehaviour
 		//SetInactive();
 		// Transform t = transform.Find(change);
 		// t.gameObject.SetActive(true);
-		Debug.Log($"Change {change.Equals("bored")} {change}");
+		// Debug.Log($"Change {change.Equals("bored")} {change}");
 		
-		if (change.Equals("neutral") ||
-			change.Equals("flirty")  ||
-			change.Equals("bored")   ||
-			change.Equals("angry")   ||
-			change.Equals("happy") ||
-			change.Equals("embarrassed")) {
+		// if (change.Equals("neutral") ||
+		// 	change.Equals("flirty")  ||
+		// 	change.Equals("bored")   ||
+		// 	change.Equals("angry")   ||
+		// 	change.Equals("happy") ||
+		// 	change.Equals("embarrassed")) {
+		// 	
+		if( change.Equals(DialogueContainer.neutral) ||
+			change.Equals(DialogueContainer.flirty) ||
+			change.Equals(DialogueContainer.angry) ||
+			change.Equals(DialogueContainer.bored) ||
+			change.Equals(DialogueContainer.happy) ||
+			change.Equals(DialogueContainer.embarrassed)) {
 			
 			for (int i = 0; i < neutralFaces.Length; i++)
-				neutralFaces[i].SetActive(change.Equals("neutral"));
+				neutralFaces[i].SetActive(change.Equals(DialogueContainer.neutral));
 			for (int i = 0; i < flirtyFaces.Length; i++)
-				flirtyFaces[i].SetActive(change.Equals("flirty"));
+				flirtyFaces[i].SetActive(change.Equals(DialogueContainer.flirty));
 			for (int i = 0; i < boredFaces.Length; i++)
-				boredFaces[i].SetActive(change.Equals("bored"));
+				boredFaces[i].SetActive(change.Equals(DialogueContainer.bored));
 			for (int i = 0; i < angryFaces.Length; i++)
-				angryFaces[i].SetActive(change.Equals("angry"));
+				angryFaces[i].SetActive(change.Equals(DialogueContainer.angry));
 			for (int i = 0; i < embarrassedFaces.Length; i++)
-				embarrassedFaces[i].SetActive(change.Equals("embarrassed"));
+				embarrassedFaces[i].SetActive(change.Equals(DialogueContainer.embarrassed));
 			for (int i = 0; i < happyFaces.Length; i++)
-				happyFaces[i].SetActive(change.Equals("happy"));
+				happyFaces[i].SetActive(change.Equals(DialogueContainer.happy));
 		}
 		
 		switch (change)
