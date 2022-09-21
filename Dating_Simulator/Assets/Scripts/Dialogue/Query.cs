@@ -1,17 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
 
 public class Query {
-	private static string happy         = "happy";
-	private static string flirty        = "flirty";
-	private static string embarrassed   = "embarrassed";
-	private static string angry         = "angry";
-	private static string bored         = "bored";
-	private static string interest      = "interest";
-	private static string likesJokes    = "likesJokes";
+	public delegate void       FaceSetter(string face);
+	public static   FaceSetter faceSetter;
+	public delegate void       SetChoiceIndex(int index);
+	private static  string     happy       = "happy";
+	private static  string     flirty      = "flirty";
+	private static  string     embarrassed = "embarrassed";
+	private static  string     angry       = "angry";
+	private static  string     bored       = "bored";
+	private static  string     interest    = "interest";
+	private static  string     likesJokes  = "likesJokes";
+	private static readonly string[] moods = {
+		DialogueContainer.neutral,
+		DialogueContainer.flirty,
+		DialogueContainer.angry,
+		DialogueContainer.bored,
+	};
+
 	private static Dictionary<string, int> _query = new Dictionary<string, int>() {
 		{ happy, 2 },
 		{ flirty, 0 },
@@ -21,13 +32,10 @@ public class Query {
 		{ interest, 0 },
 		{ likesJokes, 1 },
 	};
-	private Random   _rand = new Random(123);
-	// private static string compliment    = "compliment";
-	// private static string joke          = "joke";
-	// private static string selfInterest = "selfInterest";
+
+	private Random _rand = new Random(123);
 
 	public static List<Dia> NewQuery(GameLoop gl) {
-		
 		List<Dia> dialogs = new List<Dia>();
 		bool      match   = true;
 
@@ -54,7 +62,7 @@ public class Query {
 		// 	debug += "}\n";
 		// }
 		// Debug.Log($"query result: {dialogs.Count}\n{debug}");
-		
+
 		return dialogs;
 	}
 
@@ -78,7 +86,47 @@ public class Query {
 				case CompType.Set:
 					_query[writeBack.Item1] = writeBack.Item2;
 					break;
+			}
+
+
+		if (writeBack.Item1.Equals(DialogueContainer.cost))
+			DialogueContainer.totalCost += writeBack.Item2;
+
+		if (writeBack.Item1.Equals(DialogueContainer.neutral) ||
+			writeBack.Item1.Equals(DialogueContainer.flirty)  ||
+			writeBack.Item1.Equals(DialogueContainer.angry)   ||
+			writeBack.Item1.Equals(DialogueContainer.bored)) {
+			SetHighestMood();
 		}
+		
 		Debug.Log($"write back: {writeBack.Item1}.[{_query[writeBack.Item1]}] CompType.{writeBack.Item3}");
+	}
+
+	private static void SetHighestMood() {
+		int highestMoodIndex = -1;
+		int highestMood      = -1;
+		for (int i = 0; i < moods.Length; i++)
+			if (_query.ContainsKey(moods[i]) &&
+				_query[moods[i]] > highestMood) {
+				highestMood      = _query[moods[i]];
+				highestMoodIndex = i;
+			}
+
+		if (_query.ContainsKey("highestMood"))
+			_query["highestMood"] = highestMoodIndex;
+		else
+			_query.Add("highestMood", highestMoodIndex);
+		
+		faceSetter.Invoke(moods[highestMoodIndex]);
+		
+		Debug.Log($"HIGHEST MOOD: {highestMoodIndex}");
+	}
+
+	public static void SetCommonInterest(string commonInterest) {
+		DialogueContainer._commonInterest = commonInterest;
+	}
+	
+	public static void SetRandomInterest(string randomInterest) {
+		DialogueContainer._commonInterest = randomInterest;
 	}
 }
