@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     private AudioManager audioManager;
     private string textToOutput;
     private string qustionToWriteOut;
-    private bool stopCorutine = false;
     private string speakerName;
 
     private static UIManager instance;
@@ -37,31 +36,28 @@ public class UIManager : MonoBehaviour
 
     public void StartWriteOutQuestion(string question, string speaker)
     {
-        stopCorutine = false;
         qustionToWriteOut = question;
-        Debug.Log(speaker);
         speakerName = speaker;
+        StopAllCoroutines();
         StartCoroutine(WriteDialogue());
     }
 
-    public IEnumerator WriteDialogue()
+    private IEnumerator WriteDialogue()
     {
         textToOutput = "";
         questionTextBox.text = "";
+
         foreach (char letter in qustionToWriteOut.ToCharArray())
         {
-            if (stopCorutine) continue;
-
             textToOutput += letter;
             DisplayDialogue();
             yield return new WaitForSeconds(0.05f);
-        }                        
+        }
     }
 
     public void SkipDialogueWriteOut()
     {
-        StopCoroutine(WriteDialogue());
-        stopCorutine = true;
+        StopAllCoroutines();
         textToOutput = qustionToWriteOut;
         DisplayDialogue();
     }

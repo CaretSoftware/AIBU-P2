@@ -2,32 +2,36 @@ using System;
 
 public class DialogueContainer {
 
-	private static readonly string _next  = "continue";
-	private static readonly int    @false = 0;
-	private static readonly int    @true  = 1;
+	private static readonly string _next   = "continue";
+	private static readonly int    @false  = 0;
+	private static readonly int    @true   = 1;
+	private static readonly int    neutralInt = 0;
+	private static readonly int    flirtyInt = 0;
+	private static readonly int    angryInt = 0;
+	private static readonly int    boredInt = 0;
 
-	private static string _commonInterest = "fish";
-	private static string _randomInterest = "random interest";
-	private static string _datesName      = "Amy";
+	public static           string _commonInterest = "fish";
+	private static          string _randomInterest = "random interest";
+	private static          string _datesName      = "Amy";
+	
 
+	public const   string neutral      = "neutral";
+	public const   string flirty       = "flirty";
+	public const   string angry        = "angry";
+	public const   string bored        = "bored";
+	public const   string cost         = "cost";
 	private static string happy        = "happy";
-	private static string flirty       = "flirty";
 	private static string embarrassed  = "embarrassed";
-	private static string angry        = "angry";
-	private static string bored        = "bored";
-	private static string neutral      = "neutral";
 	private static string interest     = "interest";
 	private static string compliment   = "compliment";
 	private static string joke         = "joke";
 	private static string likesJokes   = "likesJokes";
 	private static string selfInterest = "selfInterest";
 	private static string drinkWine    = "drinkWine";
-	private static string cost         = "cost";
+	private static string highestMood  = "highestMood";
 	
-	private static int    totalCost;
+	public static int    totalCost;
 	
-
-
 	public static Dia[] dia = new Dia[] {
 		/* QUESTIONS */
 		// *	interests = 0, 
@@ -609,7 +613,7 @@ public class DialogueContainer {
 		new Dia(rule: new Rule(new[] {
 					("waiter", new Criterion(4)),	// eatSilence
 				}),
-				speaker: $"...",
+				speaker: $"",
 				text: $"...",
 				choiceText: new string[] {
 					$"...",
@@ -1312,6 +1316,8 @@ public class DialogueContainer {
 					("return", -1, Query.CompType.Set),
 					(neutral, 1, Query.CompType.Increment),
 					(happy, 1, Query.CompType.Increment),
+					("dontCallMe", 1, Query.CompType.Set),
+					("dateOver", 1, Query.CompType.Set),
 				}
 				),
 		
@@ -1373,6 +1379,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("payingAllOfIt", 1, Query.CompType.Increment),
+					("paying", -1, Query.CompType.Set),
 					(happy, 1, Query.CompType.Increment),
 					(flirty, 1, Query.CompType.Increment),
 				}
@@ -1389,6 +1396,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("payingAllOfIt", -1, Query.CompType.Set),
+					// ("paying", -1, Query.CompType.Set),
 					("dateOver", 1, Query.CompType.Set),
 				}
 				),
@@ -1403,6 +1411,7 @@ public class DialogueContainer {
 					$"{_next}",
 				},
 				writeBacks: new[] {
+					("paying", -1, Query.CompType.Set),
 					("splitTheBill", 1, Query.CompType.Set),
 					(neutral, 1, Query.CompType.Increment),
 					(angry, 1, Query.CompType.Increment),
@@ -1412,7 +1421,7 @@ public class DialogueContainer {
 		/* <105_SPLIT_BILL_ANGRY_RESPONSE */
 		new Dia(rule: new Rule(new[] {
 					("splitTheBill", new Criterion(1)),
-					(angry, new Criterion(5, int.MaxValue)),
+					(highestMood, new Criterion(angryInt)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Seriously...",
@@ -1430,7 +1439,6 @@ public class DialogueContainer {
 		/* <105_SPLIT_BILL_NEUTRAL_RESPONSE */
 		new Dia(rule: new Rule(new[] {
 					("splitTheBill", new Criterion(2)),
-					(neutral, new Criterion(4, int.MaxValue)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Okay let's split the bill.",
@@ -1559,10 +1567,10 @@ public class DialogueContainer {
 		
 		
 
-		/* ENDING 1/7 WORST_DATE_EVER */
+		/* ENDING 1/7 I'LL CALL YOU LATER */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("callYouLater" ,new Criterion(1)),
+					("highestMood", new Criterion(0)),
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 1/7\n\"I'LL CALL YOU LATER\"\nGood job. You’re not a complete failure after all since you just scored yourself a second date.",
@@ -1577,7 +1585,7 @@ public class DialogueContainer {
 		/* ENDING 2/7 SPEND_THE_NIGHT */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("spendTheNight" ,new Criterion(1)),
+					("highestMood", new Criterion(1)),
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 2/7\n\"SPEND THE NIGHT\"\nWoah. How did you do that? Your date actually asked you to spend the night at their place?",
@@ -1592,7 +1600,7 @@ public class DialogueContainer {
 		/* ENDING 3/7 WORST_DATE_EVER */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("worstDateEver" ,new Criterion(1)),
+					("highestMood", new Criterion(2)),
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 3/7\n\"Worst. Date. Ever.\"\nYeah... I kinda saw that one coming.\nIn fact I’m surprised your date stayed until the end.",
@@ -1607,7 +1615,7 @@ public class DialogueContainer {
 		/* ENDING 4/7 Zzzzz */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("zzzzz" ,new Criterion(1)),
+					("highestMood", new Criterion(3)),
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 4/7\n\"Zzzzz\"\nOh come on, you definitely were'nt that boring...",
@@ -1621,7 +1629,6 @@ public class DialogueContainer {
 		
 		/* ENDING 5/7 TONE_DEAF */
 		new Dia(rule: new Rule(new[] {
-					("dateOver" ,new Criterion(1)),
 					("toneDeaf" ,new Criterion(1)),
 				}),
 				speaker: $"Narrator",
