@@ -116,8 +116,8 @@ public class Query {
 			_query["highestMood"] = highestMoodIndex;
 		else
 			_query.Add("highestMood", highestMoodIndex);
-
-		faceSetter(moods[highestMoodIndex]);
+		
+		faceSetter.Invoke(moods[highestMoodIndex]);
 		
 		Debug.Log($"HIGHEST MOOD: {highestMoodIndex}");
 	}
