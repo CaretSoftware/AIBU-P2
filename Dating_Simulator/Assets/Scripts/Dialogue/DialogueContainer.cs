@@ -27,7 +27,7 @@ public class DialogueContainer {
 	private static string joke         = "joke";
 	private static string likesJokes   = "likesJokes";
 	private static string selfInterest = "selfInterest";
-	private static string drinkWine    = "drinkWine";
+	public static string drinkWine    = "drinkWine";
 	private static string highestMood  = "highestMood";
 	
 	public static int    totalCost;
@@ -121,7 +121,6 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(happy, 1, Query.CompType.Increment),
-					(bored, -1, Query.CompType.Increment),
 					(joke, 1, Query.CompType.Increment),
 					("toldJoke", 1, Query.CompType.Increment),
 				}
@@ -202,7 +201,6 @@ public class DialogueContainer {
 				writeBacks: new[] {
 					(joke, 1, Query.CompType.Increment),
 					(embarrassed, 1, Query.CompType.Increment),
-					(bored, -1, Query.CompType.Increment),
 					("toldJoke", 1, Query.CompType.Increment),
 				}
 				),
