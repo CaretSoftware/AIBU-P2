@@ -33,10 +33,8 @@ public class Query {
 		{ angry, 0 },
 		{ bored, 0 },
 		{ interest, 0 },
-		{ likesJokes, 0 },
+		{ likesJokes, 1 },
 	};
-
-	private Random _rand = new Random(123);
 
 	public static List<Dia> NewQuery(GameLoop gl) {
 		List<Dia> dialogs = new List<Dia>();
