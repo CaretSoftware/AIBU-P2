@@ -121,6 +121,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(happy, 1, Query.CompType.Increment),
+					(flirty, 1, Query.CompType.Increment),
 					(joke, 1, Query.CompType.Increment),
 					("toldJoke", 1, Query.CompType.Increment),
 				}
@@ -251,7 +252,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(compliment, 1, Query.CompType.Increment),
-					(flirty, 1, Query.CompType.Increment),
+					(flirty, 2, Query.CompType.Increment),
 				}
 				),
 
@@ -542,6 +543,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("waiter", 1, Query.CompType.Increment),
+					(flirty, 1, Query.CompType.Increment),
 					(cost, 100, Query.CompType.Increment),
 				}
 				),
@@ -599,7 +601,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("waiter", -1, Query.CompType.Set),
-					(embarrassed, 1, Query.CompType.Increment),
+					(embarrassed, 100, Query.CompType.Increment),
 					("toneDeaf", 1, Query.CompType.Set),
 					("dateOver", 1, Query.CompType.Set),
 				}
@@ -1417,7 +1419,7 @@ public class DialogueContainer {
 		/* <105_SPLIT_BILL_ANGRY_RESPONSE */
 		new Dia(rule: new Rule(new[] {
 					("splitTheBill", new Criterion(1)),
-					(highestMood, new Criterion(angryInt)),
+					(highestMood, new Criterion(2)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Seriously...",
@@ -1434,7 +1436,7 @@ public class DialogueContainer {
 		
 		/* <105_SPLIT_BILL_NEUTRAL_RESPONSE */
 		new Dia(rule: new Rule(new[] {
-					("splitTheBill", new Criterion(2)),
+					("splitTheBill", new Criterion(1)),
 				}),
 				speaker: $"{_datesName}",
 				text: $"Okay let's split the bill.",
@@ -1475,6 +1477,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("cannotAfford", 1, Query.CompType.Increment),
+					(embarrassed, 1, Query.CompType.Increment),
 				}
 				),
 		
@@ -1506,6 +1509,7 @@ public class DialogueContainer {
 				writeBacks: new[] {
 					("cannotAfford", -1, Query.CompType.Set),
 					("askDateToPay", 1, Query.CompType.Set),
+					(embarrassed, 1, Query.CompType.Increment),
 				}
 				),
 		
@@ -1523,6 +1527,7 @@ public class DialogueContainer {
 					("cannotAfford", -1, Query.CompType.Set),
 					("askDateToPay", -1, Query.CompType.Set),
 					("dateOver", 1, Query.CompType.Set),
+					(embarrassed, 1, Query.CompType.Increment),
 				}
 				),
 		
@@ -1553,8 +1558,9 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("cannotAfford", -1, Query.CompType.Set),
-					("dateOver", 1, Query.CompType.Set),
+					// ("dateOver", 1, Query.CompType.Set),
 					("smoothCriminal", 1, Query.CompType.Set),
+					(embarrassed, 100, Query.CompType.Increment),
 				}
 				),
 		
@@ -1566,7 +1572,7 @@ public class DialogueContainer {
 		/* ENDING 1/7 I'LL CALL YOU LATER */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("highestMood", new Criterion(0)),
+					// ("highestMood", new Criterion(0)),	// embarrased / neutral / happy
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 1/7\n\"I'LL CALL YOU LATER\"\nGood job. You’re not a complete failure after all since you just scored yourself a second date.",
@@ -1574,6 +1580,12 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
 					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
@@ -1581,7 +1593,13 @@ public class DialogueContainer {
 		/* ENDING 2/7 SPEND_THE_NIGHT */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("highestMood", new Criterion(1)),
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
+					("highestMood", new Criterion(1)), // flirty
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 2/7\n\"SPEND THE NIGHT\"\nWoah. How did you do that? Your date actually asked you to spend the night at their place?",
@@ -1589,14 +1607,25 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
 					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
 		/* ENDING 3/7 WORST_DATE_EVER */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("highestMood", new Criterion(2)),
+					("highestMood", new Criterion(2)), // angry
+					("highestMood", new Criterion(2)), // angry
+					("highestMood", new Criterion(2)), // angry
+					("highestMood", new Criterion(2)), // angry
+					("highestMood", new Criterion(2)), // angry
+					("highestMood", new Criterion(2)), // angry
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 3/7\n\"Worst. Date. Ever.\"\nYeah... I kinda saw that one coming.\nIn fact I’m surprised your date stayed until the end.",
@@ -1604,14 +1633,24 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
 					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
 		/* ENDING 4/7 Zzzzz */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
-					("highestMood", new Criterion(3)),
+					("highestMood", new Criterion(3)), // bored
+					("highestMood", new Criterion(3)), // bored
+					("highestMood", new Criterion(3)), // bored
+					("highestMood", new Criterion(3)), // bored
+					("highestMood", new Criterion(3)), // bored
 				}),
 				speaker: $"Narrator",
 				text: $"Ending 4/7\n\"Zzzzz\"\nOh come on, you definitely were'nt that boring...",
@@ -1619,12 +1658,25 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
 					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
 		/* ENDING 5/7 TONE_DEAF */
 		new Dia(rule: new Rule(new[] {
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
+					("toneDeaf" ,new Criterion(1)),
 					("toneDeaf" ,new Criterion(1)),
 				}),
 				speaker: $"Narrator",
@@ -1633,13 +1685,25 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
 					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
 		/* ENDING 6/7 DON'T_CALL_ME */
 		new Dia(rule: new Rule(new[] {
 					("dateOver" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
+					("dontCallMe" ,new Criterion(1)),
 					("dontCallMe" ,new Criterion(1)),
 				}),
 				speaker: $"Narrator",
@@ -1648,13 +1712,27 @@ public class DialogueContainer {
 					"The End",
 				},
 				writeBacks: new[] {
+					("smoothCriminal", -1, Query.CompType.Set),
 					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
 		/* ENDING 7/7 SMOOTH_CRIMINAL */
 		new Dia(rule: new Rule(new[] {
-					("dateOver" ,new Criterion(1)),
+					// ("dateOver" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
+					("smoothCriminal" ,new Criterion(1)),
 					("smoothCriminal" ,new Criterion(1)),
 				}),
 				speaker: $"Narrator",
@@ -1664,6 +1742,12 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					("smoothCriminal", -1, Query.CompType.Set),
+					("dontCallMe", -1, Query.CompType.Set),
+					("toneDeaf", -1, Query.CompType.Set),
+					("zzzzz", -1, Query.CompType.Set),
+					("worstDateEver", -1, Query.CompType.Set),
+					("spendTheNight", -1, Query.CompType.Set),
+					("callYouLater", -1, Query.CompType.Set),
 				}
 				),
 		
@@ -1683,7 +1767,7 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(neutral, 1, Query.CompType.Increment),
-					(drinkWine, 1, Query.CompType.Set),
+					(drinkWine, 1, Query.CompType.Increment),
 					("waiter", 3, Query.CompType.Set),
 				}
 				),

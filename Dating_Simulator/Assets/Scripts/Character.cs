@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
 		//SetInactive();
 		// Transform t = transform.Find(change);
 		// t.gameObject.SetActive(true);
-		Debug.Log($"Change {change.Equals("bored")} {change}");
+		// Debug.Log($"Change {change.Equals("bored")} {change}");
 		
 		// if (change.Equals("neutral") ||
 		// 	change.Equals("flirty")  ||

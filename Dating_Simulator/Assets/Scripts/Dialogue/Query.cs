@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
 using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
@@ -37,9 +38,10 @@ public class Query {
 	};
 
 	public static List<Dia> NewQuery(GameLoop gl) {
+
 		List<Dia> dialogs = new List<Dia>();
 		bool      match   = true;
-
+		int       winning = 0;
 		for (int i = 0; i < DialogueContainer.dia.Length; i++) {
 			(string key, Criterion crit)[] criteria = DialogueContainer.dia[i].rule.Criteria;
 			for (int crit = 0; crit < criteria.Length; crit++) {
@@ -54,6 +56,7 @@ public class Query {
 
 			if (match)
 				dialogs.Add(DialogueContainer.dia[i]);
+
 		}
 
 		// string debug = "";
@@ -63,7 +66,8 @@ public class Query {
 		// 	debug += "}\n";
 		// }
 		// Debug.Log($"query result: {dialogs.Count}\n{debug}");
-
+		if (_query.ContainsKey("highestMood"))
+			Debug.Log($"{moods[_query["highestMood"]]} index:{_query["highestMood"]}");
 		return dialogs;
 	}
 
@@ -90,8 +94,12 @@ public class Query {
 			}
 
 
-		if (writeBack.Item1.Equals(DialogueContainer.cost))
-			DialogueContainer.totalCost += writeBack.Item2;
+		if (writeBack.Item1.Equals(DialogueContainer.cost)) {
+			DialogueContainer.totalCost    += writeBack.Item2;
+			DialogueContainer.dia[80].text =  $"The total bill is at {DialogueContainer.totalCost}";
+			DialogueContainer.dia[86].text =  $"The total bill is at {DialogueContainer.totalCost}";
+			// Debug.Log(DialogueContainer.dia[80].text);
+		}
 
 		if (writeBack.Item1.Equals(DialogueContainer.neutral)    ||
 			writeBack.Item1.Equals(DialogueContainer.flirty)     ||
@@ -99,14 +107,16 @@ public class Query {
 			writeBack.Item1.Equals(DialogueContainer.bored)      ||
 			writeBack.Item1.Equals(DialogueContainer.happy) ||
 			writeBack.Item1.Equals(DialogueContainer.embarrassed)) {
-			Debug.Log($"MOOOOOOODD: {writeBack.Item1}");
+
 			SetHighestMood();
 		}
-		
-		if (writeBack.Item1.Equals(DialogueContainer.drinkWine) && playerDrinking != null)
+
+		if (writeBack.Item1.Equals(DialogueContainer.drinkWine) && playerDrinking != null) {
+			Debug.Log("DRINKING!!!!!!!!!!");
 			playerDrinking.Drink();
+		}
 		
-		Debug.Log($"write back: {writeBack.Item1}.[{_query[writeBack.Item1]}] CompType.{writeBack.Item3}");
+		// Debug.Log($"write back: {writeBack.Item1}.[{_query[writeBack.Item1]}] CompType.{writeBack.Item3}");
 	}
 
 	private static void SetHighestMood() {
@@ -126,7 +136,7 @@ public class Query {
 		
 		faceSetter?.Invoke(moods[highestMoodIndex]);
 		
-		Debug.Log($"HIGHEST MOOD: {moods[highestMoodIndex]} {highestMoodIndex}");
+		//Debug.Log($"HIGHEST MOOD: {moods[highestMoodIndex]} {highestMoodIndex}");
 	}
 
 	public static void SetCommonInterest(string commonInterest) {
