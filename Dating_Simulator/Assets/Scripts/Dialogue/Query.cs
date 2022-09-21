@@ -13,6 +13,12 @@ public class Query {
 	private static string bored       = "bored";
 	private static string interest    = "interest";
 	private static string likesJokes  = "likesJokes";
+	private static readonly string[] moods = {
+		DialogueContainer.neutral,
+		DialogueContainer.flirty,
+		DialogueContainer.angry,
+		DialogueContainer.bored,
+	};
 
 	private static Dictionary<string, int> _query = new Dictionary<string, int>() {
 		{ happy, 2 },
@@ -25,9 +31,6 @@ public class Query {
 	};
 
 	private Random _rand = new Random(123);
-	// private static string compliment    = "compliment";
-	// private static string joke          = "joke";
-	// private static string selfInterest = "selfInterest";
 
 	public static List<Dia> NewQuery(GameLoop gl) {
 		List<Dia> dialogs = new List<Dia>();
@@ -83,35 +86,42 @@ public class Query {
 			}
 
 
-		if (writeBack.Item1.Equals(DialogueContainer.neutral))
+		if (writeBack.Item1.Equals(DialogueContainer.cost))
 			DialogueContainer.totalCost += writeBack.Item2;
 
-		string[] moods = {
-			DialogueContainer.neutral,
-			DialogueContainer.flirty,
-			DialogueContainer.angry,
-			DialogueContainer.bored,
-		};
-		
-		
 		if (writeBack.Item1.Equals(DialogueContainer.neutral) ||
 			writeBack.Item1.Equals(DialogueContainer.flirty)  ||
 			writeBack.Item1.Equals(DialogueContainer.angry)   ||
 			writeBack.Item1.Equals(DialogueContainer.bored)) {
-			int highestMoodIndex = -1;
-			int highestMood      = -1;
-			for (int i = 0; i < moods.Length; i++)
-				if (_query.ContainsKey(moods[i]) &&
-					_query[moods[i]] > highestMood) {
-					highestMoodIndex = i;
-					highestMood      = _query[moods[i]];
-				}
-
-			if (_query.ContainsKey("highestMood"))
-				_query["highestMood"] = highestMoodIndex;
-			// else 
-			// 	_query.Add(highestMood, )
+			SetHighestMood();
 		}
-		//Debug.Log($"write back: {writeBack.Item1}.[{_query[writeBack.Item1]}] CompType.{writeBack.Item3}");
+		
+		Debug.Log($"write back: {writeBack.Item1}.[{_query[writeBack.Item1]}] CompType.{writeBack.Item3}");
+	}
+
+	private static void SetHighestMood() {
+		int highestMoodIndex = -1;
+		int highestMood      = -1;
+		for (int i = 0; i < moods.Length; i++)
+			if (_query.ContainsKey(moods[i]) &&
+				_query[moods[i]] > highestMood) {
+				highestMood      = _query[moods[i]];
+				highestMoodIndex = i;
+			}
+
+		if (_query.ContainsKey("highestMood"))
+			_query["highestMood"] = highestMoodIndex;
+		else
+			_query.Add("highestMood", highestMoodIndex);
+
+		Debug.Log($"HIGHEST MOOD: {highestMoodIndex}");
+	}
+
+	public static void SetCommonInterest(string commonInterest) {
+		DialogueContainer._commonInterest = commonInterest;
+	}
+	
+	public static void SetRandomInterest(string randomInterest) {
+		DialogueContainer._commonInterest = randomInterest;
 	}
 }
