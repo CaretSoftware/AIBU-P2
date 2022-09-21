@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private DialogueOptions dialogueOptions;
-    // What should happen when you have clicked a dialogue option
-    public void ClickedDialogue(GameObject clickedDialogue /* För att spara ner och kanske använda till något senare */)
-    {
-        dialogueOptions = clickedDialogue.transform.parent.GetComponent<DialogueOptions>();
-        dialogueOptions.ShowNextDialogue();
+    private GameLoop.SetChoiceIndex setChoiceIndex;
 
-        // Kanske borde ha denna metod någon annan stans men får ligga kvar just nu
-        dialogueOptions.SaveDownAnswer(clickedDialogue);
+    private void Awake()
+    {
+        setChoiceIndex = GameLoop.SetChoice;
+    }
+    // What should happen when you have clicked a dialogue option
+    public void ClickedDialogue(int buttonPressed)
+    {
+        if (buttonPressed == 4)
+        {
+            UIManager.Instance.SkipDialogueWriteOut();
+            return;
+        }
+        setChoiceIndex(buttonPressed);
     }
 
     public void ClickedObject(GameObject clickedObject)

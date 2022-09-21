@@ -8,15 +8,14 @@ public class Character : MonoBehaviour
 {
 	[Header("Character stats")]
 	private static Character instance;
-	[SerializeField] private int interestsCount;
-	[SerializeField] private Interest[] mainInterest;
    [SerializeField] private Interest[] interests;
 	private InterestHolder interestHolder;
 
-	public int Mood { get { return Mood; } set => Mood = value; }
-	public int Humour { get { return Humour; } set => Humour = value; }
-	public int Interested { get { return Interested; } set => Interested = value; }
-	public int Drunkness { get { return Drunkness; } set => Drunkness = value; }
+	private int mood = 0;
+	private int interested = 0;
+
+	public int Mood { get { return mood; } set { mood = value; } }
+	public int Interested { get { return interested; } set { interested = value; } }
 
 	public static Character Instance
 	{
@@ -33,70 +32,61 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		interests = new Interest[interestsCount];
-		interestHolder = InterestHolder.Instance;
+		interestHolder = InterestHolder.Instance; 
 	}
 
-	private void Start()
+	public void ChangeInterest(int changedValue)
 	{
-		RandomizeInterests();
-	}
-
-	private void RandomizeInterests()
-	{
-		int i = 0;
-		if (mainInterest.Length > 0) //Picks one main intrest based on the date
-		{
-			i++;
-			interests[0] = mainInterest[UnityEngine.Random.Range(0, mainInterest.Length)];
-		}
-
-		for (; i < interestsCount; i++) //Randomizes the other intrests
-		{
-			Interest interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
-			while (FindInterest(interest) != -1)
-			{
-				interest = interestHolder.interests[UnityEngine.Random.Range(0, InterestHolder.Instance.interests.Length)];
-			}
-			interests[i] = interest;
-		}
-
-		Humour = UnityEngine.Random.Range(-1, 2);
-	}
-
-
-	public void ChangeLoveinterest(int changedValue)
-	{
-		Interested += changedValue;
+		interested += changedValue;
 		// How intrested/bored the date thinks of you.
 	}
 
 	public void ChangeMood(int changedValue)
 	{
-		Mood += changedValue;
+		mood += changedValue;
 		// if its over high enough at the end of the game you get another date...
 	}
 
-	public void Drink()
+	public void ChangeMood(string change)
 	{
-		Drunkness++;
-
-		if (Drunkness >= 8)
+		SetInactive();
+		Transform t = transform.Find(change);
+		t.gameObject.SetActive(true);
+		switch (change)
 		{
-			//Falling over, saying something weird or something else?
+			case "Happy":
+				mood++;
+			break;
+
+			case "Angry":
+				mood--;
+				break;
+
+			case "Bored":
+				interested--;
+				break;
+
+			case "Flirty":
+				interested++;
+				break;
 		}
 	}
 
-	private int FindInterest(Interest interest)
+	public void TakeIntrests(int person)
 	{
-		for (int i = 0; i < interests.Length; i++)
+		interests = interestHolder.interests[person];
+	}
+
+	private void SetInactive()
+	{
+		for (int i = 0; i < transform.childCount; i++)
 		{
-			if (interests[i] == interest)
+			GameObject gO = transform.GetChild(i).gameObject;
+			if (gO.activeSelf && gO.transform.name != "Body")
 			{
-				return i;
+				gO.SetActive(false);
+				break;
 			}
 		}
-		return -1;
 	}
-
 }

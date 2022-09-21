@@ -7,12 +7,16 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private AudioClip dialogueSound;
+    [SerializeField] private TMP_Text questionTextBox;
     private AudioManager audioManager;
     private string textToOutput;
+    private string qustionToWriteOut;
+    private bool stopCorutine = false;
+    private string speakerName;
 
     private static UIManager instance;
     public static UIManager Instance { get { return instance; } }
-    private void Awake()
+    private void Start()
     {
         if (instance == null)
         {
@@ -22,35 +26,43 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        audioManager = AudioManager.Instance;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void DisplayDialogue()
     {
-        audioManager = AudioManager.Instance;      
-    }
-
-    void DisplayDialogue(TMP_Text questionTextBox)
-    {
-        questionTextBox.text = textToOutput;        
+        questionTextBox.text = speakerName + ": " + textToOutput;        
         audioManager.PlaySound(dialogueSound);
     }
 
-    public void StartWriteOutQuestion(string question, TMP_Text questionTextBox)
+    public void StartWriteOutQuestion(string question, string speaker)
     {
-        StartCoroutine(WriteDialogue(question, questionTextBox));
+        stopCorutine = false;
+        qustionToWriteOut = question;
+        Debug.Log(speaker);
+        speakerName = speaker;
+        StartCoroutine(WriteDialogue());
     }
 
-    public IEnumerator WriteDialogue(string question, TMP_Text questionTextBox)
+    public IEnumerator WriteDialogue()
     {
         textToOutput = "";
         questionTextBox.text = "";
-        foreach (char letter in question.ToCharArray())
+        foreach (char letter in qustionToWriteOut.ToCharArray())
         {
+            if (stopCorutine) continue;
+
             textToOutput += letter;
-            DisplayDialogue(questionTextBox);
+            DisplayDialogue();
             yield return new WaitForSeconds(0.05f);
         }                        
     }
 
+    public void SkipDialogueWriteOut()
+    {
+        StopCoroutine(WriteDialogue());
+        stopCorutine = true;
+        textToOutput = qustionToWriteOut;
+        DisplayDialogue();
+    }
 }
