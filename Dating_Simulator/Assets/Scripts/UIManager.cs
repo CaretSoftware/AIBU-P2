@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
     {
         stopCorutine = false;
         qustionToWriteOut = question;
-        Debug.Log(speaker);
         speakerName = speaker;
         StartCoroutine(WriteDialogue());
     }
