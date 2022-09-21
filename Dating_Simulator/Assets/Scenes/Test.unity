@@ -290,11 +290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532614, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532614, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532614, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -306,11 +306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532614, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532614, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -312.5
       objectReference: {fileID: 0}
     - target: {fileID: 7295383210760532633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_IsActive
@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211099785343, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211642327366, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_IsActive
@@ -518,11 +518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694088, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694088, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694088, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -534,11 +534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694088, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694088, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -437.5
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211808694091, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_IsActive
@@ -550,11 +550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904450633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904450633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904450633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -566,11 +566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904450633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904450633, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -187.5
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211904451508, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -622,11 +622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147050, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147050, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147050, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -638,11 +638,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147050, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147050, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -62.5
       objectReference: {fileID: 0}
     - target: {fileID: 7295383211938147053, guid: db616bc9689bb954894fda1b25d0d43a, type: 3}
       propertyPath: m_IsActive
@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666953164273714700, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2666953164273714736, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_Pivot.x
@@ -1105,6 +1105,27 @@ PrefabInstance:
     - target: {fileID: 2666953164273714736, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432730524222173541, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_text
+      value: "*Hmph* All my friends are happily married but I\u2019m so \nlonely.....\n\n\rMaybe
+        I should give dating apps a chance after all\r\n.....\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432730524222173541, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_fontSize
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432730524222173541, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432730524222173541, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432730524222173541, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8798168397818297232, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_IsActive
