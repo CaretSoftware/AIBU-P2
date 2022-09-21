@@ -13,11 +13,9 @@ public class Character : MonoBehaviour
 
 	private int mood = 0;
 	private int interested = 0;
-	private int drunkness = 0;
 
 	public int Mood { get { return mood; } set { mood = value; } }
 	public int Interested { get { return interested; } set { interested = value; } }
-	public int Drunkness { get { return drunkness; } set { drunkness = value; } }
 
 	public static Character Instance
 	{
