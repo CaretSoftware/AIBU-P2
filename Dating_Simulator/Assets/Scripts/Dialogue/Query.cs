@@ -22,6 +22,8 @@ public class Query {
 		DialogueContainer.flirty,
 		DialogueContainer.angry,
 		DialogueContainer.bored,
+		"happy",
+		"embarrassed",
 	};
 
 	private static Dictionary<string, int> _query = new Dictionary<string, int>() {
@@ -96,7 +98,9 @@ public class Query {
 		if (writeBack.Item1.Equals(DialogueContainer.neutral) ||
 			writeBack.Item1.Equals(DialogueContainer.flirty)  ||
 			writeBack.Item1.Equals(DialogueContainer.angry)   ||
-			writeBack.Item1.Equals(DialogueContainer.bored)) {
+			writeBack.Item1.Equals(DialogueContainer.bored)   ||
+			writeBack.Item1.Equals("happy")                   ||
+			writeBack.Item1.Equals("embarrassed")) {
 			SetHighestMood();
 		}
 		
