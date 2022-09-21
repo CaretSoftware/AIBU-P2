@@ -66,8 +66,8 @@ public class Query {
 		// 	debug += "}\n";
 		// }
 		// Debug.Log($"query result: {dialogs.Count}\n{debug}");
-		if (_query.ContainsKey("highestMood"))
-			Debug.Log($"{moods[_query["highestMood"]]} index:{_query["highestMood"]}");
+		// if (_query.ContainsKey("highestMood"))
+		// 	Debug.Log($"{moods[_query["highestMood"]]} index:{_query["highestMood"]}");
 		return dialogs;
 	}
 
