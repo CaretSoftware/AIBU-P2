@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InterestHolder : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class InterestHolder : MonoBehaviour
 	public Interest[] personIntrests;
 	public Interest[][] interests;
 	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
+	private Text interestText;
 	private int humour = 0;
 	public int Humour { get { return humour; } set { humour = value; } }
 
@@ -43,6 +45,7 @@ public class InterestHolder : MonoBehaviour
 	}
 	private void RandomizeInterests()
 	{
+		interestText = GameObject.Find("InterestText").GetComponent<Text>();
 		for (int i = 0; i < peopleCount; i++)
 		{
 			int j = 0;
@@ -56,8 +59,9 @@ public class InterestHolder : MonoBehaviour
 			{
 				int random = Random.Range(0, personIntrests.Length);
 				Interest interest = personIntrests[random];
-				while (FindInterest(i, interest) == i)
+				while (FindInterest(i, interest) != -1)
 				{
+					random = Random.Range(0, personIntrests.Length);
 					interest = personIntrests[random];
 				}
 				interests[i][j] = interest;
@@ -85,9 +89,9 @@ public class InterestHolder : MonoBehaviour
 
 	private int FindInterest(int person, Interest interest)
 	{
-		for (int i = 0; i < interestsCount - 1; i++)
+		for (int i = 0; i < interestsCount; i++)
 		{
-			if (interests[person][i] == interest)
+			if (interests[person][i] == interest) 
 			{
 				return i;
 			}
@@ -103,6 +107,11 @@ public class InterestHolder : MonoBehaviour
 			if (gO != null && gO.gameObject.activeSelf)
 			{
 				Character.Instance.TakeIntrests(i);
+				interestText.text = "";
+				for (int j = 0; j < interestsCount; j++)
+				{
+					interestText.text += interests[i][j].GetType().Name + " "; 
+				}
 				break;
 			}
 		}
