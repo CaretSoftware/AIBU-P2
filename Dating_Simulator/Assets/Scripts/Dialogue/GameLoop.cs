@@ -8,7 +8,7 @@ using Random = System.Random;
 using TMPro;
 
 public class GameLoop : MonoBehaviour {
-	public delegate void DialogueText(string text);
+	public delegate void DialogueText(string text, string speaker);
 	public delegate void ChoiceText(string[] text);
 	public delegate void SetChoiceIndex(int  index);
 
@@ -49,7 +49,7 @@ public class GameLoop : MonoBehaviour {
 			_choiceIndex = -1;
 
 			// Display Dialogue
-			DisplayDialogue(_dialogue.text);
+			DisplayDialogue(_dialogue.text, _dialogue.speaker);
 			// Retrieve Dialogue Choices
 			DisplayChoices(_dialogue.ChoiceText);
 
@@ -83,8 +83,8 @@ public class GameLoop : MonoBehaviour {
 	}
 
 	// DEBUG placeholder for call to Delegates
-	private void DisplayDialogue(string text) {
-		dialogueText(text);
+	private void DisplayDialogue(string text, string speaker) {
+		dialogueText(text, speaker);
 	}
 
 	// DEBUG placeholder for call to Delegates

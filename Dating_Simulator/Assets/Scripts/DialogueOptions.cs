@@ -9,12 +9,15 @@ public class DialogueOptions : MonoBehaviour
     private void Awake()
     {
         GameLoop.choiceText = WriteOutDialogueOptions;
-        GameLoop.dialogueText = WriteOutQuestion;       
+        GameLoop.dialogueText = WriteOutQuestion;
+
     }
     
-    public void WriteOutQuestion(string question)
+
+
+    public void WriteOutQuestion(string question, string speaker)
     {
-        UIManager.Instance.StartWriteOutQuestion(question);
+        UIManager.Instance.StartWriteOutQuestion(question, speaker);
     }
 
     public void WriteOutDialogueOptions(string[] answersToQuestion)

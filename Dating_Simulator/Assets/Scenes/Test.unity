@@ -943,6 +943,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1795804051732199222, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666953163202393160, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666953164057278889, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2666953164273714700, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_Name
       value: Canvas_APP
@@ -1034,6 +1046,10 @@ PrefabInstance:
     - target: {fileID: 2666953164273714736, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798168397818297232, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
