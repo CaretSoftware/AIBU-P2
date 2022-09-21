@@ -127,7 +127,7 @@ public class Query {
 		
 		faceSetter?.Invoke(moods[highestMoodIndex]);
 		
-		Debug.Log($"HIGHEST MOOD: {highestMoodIndex}");
+		Debug.Log($"HIGHEST MOOD: {moods[highestMoodIndex]} {highestMoodIndex}");
 	}
 
 	public static void SetCommonInterest(string commonInterest) {

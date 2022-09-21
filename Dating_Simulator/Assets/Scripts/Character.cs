@@ -69,6 +69,7 @@ public class Character : MonoBehaviour
 			change.Equals("flirty")  ||
 			change.Equals("bored")   ||
 			change.Equals("angry")   ||
+			change.Equals("happy") ||
 			change.Equals("embarrassed")) {
 			
 			for (int i = 0; i < neutralFaces.Length; i++)
@@ -81,6 +82,8 @@ public class Character : MonoBehaviour
 				angryFaces[i].SetActive(change.Equals("angry"));
 			for (int i = 0; i < embarrassedFaces.Length; i++)
 				embarrassedFaces[i].SetActive(change.Equals("embarrassed"));
+			for (int i = 0; i < happyFaces.Length; i++)
+				happyFaces[i].SetActive(change.Equals("happy"));
 		}
 		
 		switch (change)
