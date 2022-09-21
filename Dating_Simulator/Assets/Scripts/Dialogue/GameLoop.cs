@@ -27,7 +27,7 @@ public class GameLoop : MonoBehaviour {
 		setChoiceIndex =  SetChoice;
 	}
 
-	private void Start() {
+	public void StartLoop(){
 		Loop();
 	}
 

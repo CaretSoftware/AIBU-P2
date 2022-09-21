@@ -13,11 +13,9 @@ public class Character : MonoBehaviour
 
 	private int mood = 0;
 	private int interested = 0;
-	private int drunkness = 0;
 
 	public int Mood { get { return mood; } set { mood = value; } }
 	public int Interested { get { return interested; } set { interested = value; } }
-	public int Drunkness { get { return drunkness; } set { drunkness = value; } }
 
 	public static Character Instance
 	{
@@ -37,16 +35,7 @@ public class Character : MonoBehaviour
 		interestHolder = InterestHolder.Instance; 
 	}
 
-	private void Start()
-	{
-		/*
-		RandomizeInterests();
-		ChangeMood("Angry");
-		*/
-	}
-
-
-	public void ChangeLoveinterest(int changedValue)
+	public void ChangeInterest(int changedValue)
 	{
 		interested += changedValue;
 		// How intrested/bored the date thinks of you.
@@ -56,16 +45,6 @@ public class Character : MonoBehaviour
 	{
 		mood += changedValue;
 		// if its over high enough at the end of the game you get another date...
-	}
-
-	public void Drink()
-	{
-		drunkness++;
-
-		if (Drunkness >= 8)
-		{
-			//Falling over, saying something weird or something else?
-		}
 	}
 
 	public void ChangeMood(string change)
@@ -83,10 +62,6 @@ public class Character : MonoBehaviour
 				mood--;
 				break;
 
-			case "Embarrassed":
-				// not sure if it should be a variable
-				break;
-
 			case "Bored":
 				interested--;
 				break;
@@ -100,7 +75,6 @@ public class Character : MonoBehaviour
 	public void TakeIntrests(int person)
 	{
 		interests = interestHolder.interests[person];
-		print(person);
 	}
 
 	private void SetInactive()

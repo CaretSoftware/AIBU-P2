@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InterestHolder : MonoBehaviour
 {
     private static InterestHolder instance;
+
+	private int humour = 0;
+	private Text interestText;
 	[SerializeField] private int peopleCount = 4;
 	[SerializeField] private int interestsCount = 3;
+	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
 
 	public Interest[] personIntrests;
 	public Interest[][] interests;
-	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
-	private int humour = 0;
 	public int Humour { get { return humour; } set { humour = value; } }
 
 	public static InterestHolder Instance
@@ -43,6 +46,7 @@ public class InterestHolder : MonoBehaviour
 	}
 	private void RandomizeInterests()
 	{
+		interestText = GameObject.Find("InterestText").GetComponent<Text>();
 		for (int i = 0; i < peopleCount; i++)
 		{
 			int j = 0;
@@ -54,12 +58,14 @@ public class InterestHolder : MonoBehaviour
 
 			for (; j < interestsCount; j++) //Randomizes the other intrests
 			{
-				int random = Random.Range(0, personIntrests.Length);
-				Interest interest = personIntrests[random];
-				while (FindInterest(i, interest) == i)
+				int random;
+				Interest interest;
+				do
 				{
+					random = Random.Range(0, personIntrests.Length);
 					interest = personIntrests[random];
 				}
+				while (FindInterest(i, interest) != -1);
 				interests[i][j] = interest;
 			}
 			Humour = Random.Range(-1, 2);
@@ -85,9 +91,9 @@ public class InterestHolder : MonoBehaviour
 
 	private int FindInterest(int person, Interest interest)
 	{
-		for (int i = 0; i < interestsCount - 1; i++)
+		for (int i = 0; i < interestsCount; i++)
 		{
-			if (interests[person][i] == interest)
+			if (interests[person][i] == interest) 
 			{
 				return i;
 			}
@@ -103,6 +109,11 @@ public class InterestHolder : MonoBehaviour
 			if (gO != null && gO.gameObject.activeSelf)
 			{
 				Character.Instance.TakeIntrests(i);
+				interestText.text = "";
+				for (int j = 0; j < interestsCount; j++)
+				{
+					interestText.text += interests[i][j].GetType().Name + " "; 
+				}
 				break;
 			}
 		}
