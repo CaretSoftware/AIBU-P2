@@ -27,7 +27,7 @@ public class DialogueContainer {
 	private static string joke         = "joke";
 	private static string likesJokes   = "likesJokes";
 	private static string selfInterest = "selfInterest";
-	private static string drinkWine    = "drinkWine";
+	public static string drinkWine    = "drinkWine";
 	private static string highestMood  = "highestMood";
 	
 	public static int    totalCost;
