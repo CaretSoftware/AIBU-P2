@@ -20,14 +20,14 @@ public class DialogueContainer {
 	public const   string angry        = "angry";
 	public const   string bored        = "bored";
 	public const   string cost         = "cost";
-	private static string happy        = "happy";
-	private static string embarrassed  = "embarrassed";
+	public const   string happy        = "happy";
+	public const   string embarrassed  = "embarrassed";
 	private static string interest     = "interest";
 	private static string compliment   = "compliment";
 	private static string joke         = "joke";
 	private static string likesJokes   = "likesJokes";
 	private static string selfInterest = "selfInterest";
-	public static string drinkWine    = "drinkWine";
+	public static  string drinkWine    = "drinkWine";
 	private static string highestMood  = "highestMood";
 	
 	public static int    totalCost;
@@ -200,7 +200,6 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(joke, 1, Query.CompType.Increment),
-					(embarrassed, 1, Query.CompType.Increment),
 					("toldJoke", 1, Query.CompType.Increment),
 				}
 				),
@@ -220,7 +219,6 @@ public class DialogueContainer {
 				},
 				writeBacks: new[] {
 					(embarrassed, 1, Query.CompType.Increment),
-					(angry, 1, Query.CompType.Increment),
 					(joke, 1, Query.CompType.Increment),
 					("toldJoke", 1, Query.CompType.Increment),
 				}

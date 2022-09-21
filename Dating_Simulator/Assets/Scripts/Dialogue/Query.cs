@@ -22,18 +22,18 @@ public class Query {
 		DialogueContainer.flirty,
 		DialogueContainer.angry,
 		DialogueContainer.bored,
-		"happy",
-		"embarrassed",
+		DialogueContainer.happy,
+		DialogueContainer.embarrassed,
 	};
 
 	private static Dictionary<string, int> _query = new Dictionary<string, int>() {
-		{ happy, 2 },
+		{ happy, 0 },
 		{ flirty, 0 },
 		{ embarrassed, 0 },
 		{ angry, 0 },
-		{ bored, 2 },
+		{ bored, 0 },
 		{ interest, 0 },
-		{ likesJokes, 1 },
+		{ likesJokes, 0 },
 	};
 
 	private Random _rand = new Random(123);
@@ -95,12 +95,13 @@ public class Query {
 		if (writeBack.Item1.Equals(DialogueContainer.cost))
 			DialogueContainer.totalCost += writeBack.Item2;
 
-		if (writeBack.Item1.Equals(DialogueContainer.neutral) ||
-			writeBack.Item1.Equals(DialogueContainer.flirty)  ||
-			writeBack.Item1.Equals(DialogueContainer.angry)   ||
-			writeBack.Item1.Equals(DialogueContainer.bored)   ||
-			writeBack.Item1.Equals("happy")                   ||
-			writeBack.Item1.Equals("embarrassed")) {
+		if (writeBack.Item1.Equals(DialogueContainer.neutral)    ||
+			writeBack.Item1.Equals(DialogueContainer.flirty)     ||
+			writeBack.Item1.Equals(DialogueContainer.angry)      ||
+			writeBack.Item1.Equals(DialogueContainer.bored)      ||
+			writeBack.Item1.Equals(DialogueContainer.happy) ||
+			writeBack.Item1.Equals(DialogueContainer.embarrassed)) {
+			Debug.Log($"MOOOOOOODD: {writeBack.Item1}");
 			SetHighestMood();
 		}
 		
