@@ -5,12 +5,12 @@ using UnityEngine;
 public class InterestHolder : MonoBehaviour
 {
     private static InterestHolder instance;
-	[SerializeField] private readonly int peopleCount = 4;
+	[SerializeField] private int peopleCount = 4;
 	[SerializeField] private int interestsCount = 3;
 
 	public Interest[] personIntrests;
 	public Interest[][] interests;
-	[SerializeField] private List<Interest> mainInterest;
+	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
 	private int humour = 0;
 	public int Humour { get { return humour; } set { humour = value; } }
 
@@ -30,6 +30,7 @@ public class InterestHolder : MonoBehaviour
 	public void Awake()
 	{
 		interests = new Interest[peopleCount][];
+		personIntrests = GetComponentsInChildren<Interest>(true);
 		for (int i = 0; i < peopleCount; i++)
 		{
 			interests[i] = new Interest[interestsCount];
@@ -38,7 +39,6 @@ public class InterestHolder : MonoBehaviour
 
 	public void SetIntrests()
 	{
-		personIntrests = GetComponentsInChildren<Interest>();
 		RandomizeInterests();
 	}
 	private void RandomizeInterests()
@@ -54,15 +54,21 @@ public class InterestHolder : MonoBehaviour
 
 			for (; j < interestsCount; j++) //Randomizes the other intrests
 			{
-				Interest interest = interests[i][Random.Range(0, interestsCount)];
-				while (FindInterest(i, interest) == -1)
+				int random = Random.Range(0, personIntrests.Length);
+				Interest interest = personIntrests[random];
+				while (FindInterest(i, interest) == i)
 				{
-					interest = interests[i][Random.Range(0, interestsCount)];
+					interest = personIntrests[random];
 				}
 				interests[i][j] = interest;
 			}
-			Humour = UnityEngine.Random.Range(-1, 2);
+			Humour = Random.Range(-1, 2);
 		}
+	}
+
+	public void SwitchPerson()
+	{
+		GiveIntrest();
 	}
 
 	public void AddInterest(Interest interest)
@@ -79,7 +85,7 @@ public class InterestHolder : MonoBehaviour
 
 	private int FindInterest(int person, Interest interest)
 	{
-		for (int i = 0; i < interests.Length; i++)
+		for (int i = 0; i < interestsCount - 1; i++)
 		{
 			if (interests[person][i] == interest)
 			{
@@ -89,13 +95,15 @@ public class InterestHolder : MonoBehaviour
 		return -1;
 	}
 
-	public void GiveIntrest()
+	private void GiveIntrest()
 	{
 		for (int i = 0; i < peopleCount; i++)
 		{
-			if (transform.Find("Person" + (i + 1)))
+			GameObject gO = GameObject.Find("Person" + (i + 1));
+			if (gO != null && gO.gameObject.activeSelf)
 			{
 				Character.Instance.TakeIntrests(i);
+				break;
 			}
 		}
 	}

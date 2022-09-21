@@ -160,38 +160,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1387141176}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GiveIntrest
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InterestHolder, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953162938987901, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953163517846347, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_Name
-      value: Person2
-      objectReference: {fileID: 0}
     - target: {fileID: 2666953164273714700, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
       propertyPath: m_Name
       value: Canvas_APP
@@ -280,79 +248,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2666953164452022062, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_Name
-      value: Person3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164752910405, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164752910405, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1387141176}
-    - target: {fileID: 2666953164752910405, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: SetIntrests
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164752910405, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: InterestHolder, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164915974395, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_Name
-      value: Person4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164920793804, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_Name
-      value: Person1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1387141176}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GiveIntrest
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InterestHolder, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2666953164947365129, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9096000410359565793, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
---- !u!114 &1387141176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 451713815, guid: 21b2f65d0fd0c2948abd6b3b314a8372, type: 3}
-  m_PrefabInstance: {fileID: 1120342078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f28c1668164f546808a208c0451e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1606148751
 PrefabInstance:
   m_ObjectHideFlags: 0

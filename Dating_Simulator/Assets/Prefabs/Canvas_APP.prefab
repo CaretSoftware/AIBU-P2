@@ -2965,6 +2965,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 451713815}
+        m_TargetAssemblyTypeName: InterestHolder, Assembly-CSharp
+        m_MethodName: SwitchPerson
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2666953163048870509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,7 +3383,7 @@ GameObject:
   - component: {fileID: 2666953163517846348}
   - component: {fileID: 2666953163517846349}
   m_Layer: 5
-  m_Name: Gilr2
+  m_Name: Person2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3950,7 +3962,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f28c1668164f546808a208c0451e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interests: []
+  peopleCount: 4
+  interestsCount: 3
+  personIntrests: []
+  mainInterest: []
 --- !u!1 &2666953164372916398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,7 +4270,7 @@ GameObject:
   - component: {fileID: 2666953164452022099}
   - component: {fileID: 2666953164452022096}
   m_Layer: 5
-  m_Name: Girl3
+  m_Name: Person3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4759,7 +4774,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 451713815}
         m_TargetAssemblyTypeName: InterestHolder, Assembly-CSharp
-        m_MethodName: Randomize
+        m_MethodName: SetIntrests
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 451713815}
+        m_TargetAssemblyTypeName: InterestHolder, Assembly-CSharp
+        m_MethodName: SwitchPerson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5019,7 +5046,7 @@ GameObject:
   - component: {fileID: 2666953164915974396}
   - component: {fileID: 2666953164915974397}
   m_Layer: 5
-  m_Name: Girl4
+  m_Name: Person4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5094,7 +5121,7 @@ GameObject:
   - component: {fileID: 2666953164920793841}
   - component: {fileID: 2666953164920793806}
   m_Layer: 5
-  m_Name: Girl1
+  m_Name: Person1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5281,6 +5308,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2666953164057278891}
         m_TargetAssemblyTypeName: ShowDate, Assembly-CSharp
         m_MethodName: PreviousGirl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 451713815}
+        m_TargetAssemblyTypeName: InterestHolder, Assembly-CSharp
+        m_MethodName: SwitchPerson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5585,18 +5624,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 451713815}
-        m_TargetAssemblyTypeName: InterestHolder, Assembly-CSharp
-        m_MethodName: SetIntrests
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
