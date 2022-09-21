@@ -57,13 +57,14 @@ public class InterestHolder : MonoBehaviour
 
 			for (; j < interestsCount; j++) //Randomizes the other intrests
 			{
-				int random = Random.Range(0, personIntrests.Length);
-				Interest interest = personIntrests[random];
-				while (FindInterest(i, interest) != -1)
+				int random;
+				Interest interest;
+				do
 				{
 					random = Random.Range(0, personIntrests.Length);
 					interest = personIntrests[random];
 				}
+				while (FindInterest(i, interest) != -1);
 				interests[i][j] = interest;
 			}
 			Humour = Random.Range(-1, 2);
