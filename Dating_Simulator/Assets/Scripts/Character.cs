@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
 	private static Character instance;
    [SerializeField] private Interest[] interests;
 	private InterestHolder interestHolder;
+	[SerializeField] private Animator animator;
+	[SerializeField] private AnimationClip drinkAnimation;
+
 
 	private int mood = 0;
 	private int interested = 0;
@@ -32,6 +35,7 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
+		Query.faceSetter += ChangeMood;
 		interestHolder = InterestHolder.Instance; 
 	}
 
@@ -54,20 +58,21 @@ public class Character : MonoBehaviour
 		t.gameObject.SetActive(true);
 		switch (change)
 		{
-			case "Happy":
+			case "happy":
 				mood++;
 			break;
 
-			case "Angry":
+			case "angry":
 				mood--;
 				break;
 
-			case "Bored":
+			case "bored":
 				interested--;
 				break;
 
-			case "Flirty":
+			case "flirty":
 				interested++;
+				animator.Play(drinkAnimation.ToString());
 				break;
 		}
 	}
