@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class InterestHolder : MonoBehaviour
 {
     private static InterestHolder instance;
+
+	private int humour = 0;
+	private Text interestText;
 	[SerializeField] private int peopleCount = 4;
 	[SerializeField] private int interestsCount = 3;
+	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
 
 	public Interest[] personIntrests;
 	public Interest[][] interests;
-	[SerializeField] private List<Interest> mainInterest = new List<Interest>();
-	private Text interestText;
-	private int humour = 0;
 	public int Humour { get { return humour; } set { humour = value; } }
 
 	public static InterestHolder Instance
