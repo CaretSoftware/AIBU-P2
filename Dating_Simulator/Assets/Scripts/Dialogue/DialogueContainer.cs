@@ -9,25 +9,28 @@ public class DialogueContainer {
 	private static string _commonInterest = "fish";
 	private static string _randomInterest = "random interest";
 	private static string _datesName      = "Amy";
-
-	private static string happy        = "happy";
-	private static string flirty       = "flirty";
-	private static string embarrassed  = "embarrassed";
-	private static string angry        = "angry";
-	private static string bored        = "bored";
-	private static string neutral      = "neutral";
-	private static string interest     = "interest";
-	private static string compliment   = "compliment";
-	private static string joke         = "joke";
-	private static string likesJokes   = "likesJokes";
-	private static string selfInterest = "selfInterest";
-	private static string drinkWine    = "drinkWine";
-	private static string cost         = "cost";
-	
-	private static int    totalCost;
 	
 
-
+	public const   string neutral       = "neutral";
+	public const   string flirty        = "flirty";
+	public const   string angry         = "angry";
+	public const   string bored         = "bored";
+	public const   string cost          = "cost";
+	private static string happy         = "happy";
+	private static string embarrassed   = "embarrassed";
+	private static string interest      = "interest";
+	private static string compliment    = "compliment";
+	private static string joke          = "joke";
+	private static string likesJokes    = "likesJokes";
+	private static string selfInterest  = "selfInterest";
+	private static string drinkWine     = "drinkWine";
+	public static  string isMostNeutral = "isMostNeutral";
+	public static  string isMostFlirty  = "isMostFlirty";
+	public static  string isMostAngry   = "isMostAngry";
+	public static  string isMostBored   = "isMostBored";
+	
+	public static int    totalCost;
+	
 	public static Dia[] dia = new Dia[] {
 		/* QUESTIONS */
 		// *	interests = 0, 
@@ -1312,6 +1315,8 @@ public class DialogueContainer {
 					("return", -1, Query.CompType.Set),
 					(neutral, 1, Query.CompType.Increment),
 					(happy, 1, Query.CompType.Increment),
+					("dontCallMe", 1, Query.CompType.Set),
+					("dateOver", 1, Query.CompType.Set),
 				}
 				),
 		
