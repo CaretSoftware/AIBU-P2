@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18095577, g: 0.22217903, b: 0.2821712, a: 1}
+  m_IndirectSpecularColor: {r: 0.18095578, g: 0.22217947, b: 0.28217235, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1201,11 +1201,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6593666078021055, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ddc728768b83c8741bc5224e228fd803, type: 2}
+    - target: {fileID: 6593666796942873, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f7b32f20820553449840affab433fe6, type: 2}
     - target: {fileID: 1717834387727114145, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1717834388866948800, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187944105486975, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187944280086476, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187944705373290, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187944802819825, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187944969913844, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952187945952678222, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1291,12 +1323,12 @@ MonoBehaviour:
   boredFaces:
   - {fileID: 1226655660}
   - {fileID: 240113922}
-  embarrassedFaces:
-  - {fileID: 900993735}
-  - {fileID: 1862751263}
   happyFaces:
   - {fileID: 1575931328}
   - {fileID: 1071031674}
+  embarrassedFaces:
+  - {fileID: 900993735}
+  - {fileID: 1862751263}
 --- !u!1 &1575931328 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1952187945757977020, guid: f92c809d5fa7a7f4a9f01c24eecc9ffe, type: 3}
@@ -1589,12 +1621,12 @@ MonoBehaviour:
   boredFaces:
   - {fileID: 240113922}
   - {fileID: 1226655660}
-  embarrassedFaces:
-  - {fileID: 1862751263}
-  - {fileID: 900993735}
   happyFaces:
   - {fileID: 1071031674}
   - {fileID: 1575931328}
+  embarrassedFaces:
+  - {fileID: 1862751263}
+  - {fileID: 900993735}
 --- !u!1001 &4659134471184372256
 PrefabInstance:
   m_ObjectHideFlags: 0
