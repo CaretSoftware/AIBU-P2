@@ -24,7 +24,9 @@ public class GameLoop : MonoBehaviour {
 	private void Awake() {
 		// dialogueText   += DisplayDialogue;
 		// choiceText     += DisplayChoices;
-		setChoiceIndex =  SetChoice;
+		Query.playerDrinking = FindObjectOfType<PlayerDrinking>();
+		// Debug.Log("null" + Query.playerDrinking == null);
+		setChoiceIndex       = SetChoice;
 	}
 
 	public void StartLoop(){

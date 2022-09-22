@@ -8,11 +8,20 @@ public class Character : MonoBehaviour
 {
 	[Header("Character stats")]
 	private static Character instance;
-   [SerializeField] private Interest[] interests;
-	private InterestHolder interestHolder;
+   [SerializeField] private  Interest[]     interests;
+	private                  InterestHolder interestHolder;
+	[SerializeField] private Animator       animator;
+	[SerializeField] private AnimationClip  drinkAnimation;
 
-	private int mood = 0;
-	private int interested = 0;
+	[SerializeField] private GameObject[] neutralFaces;
+	[SerializeField] private GameObject[] flirtyFaces;
+	[SerializeField] private GameObject[] angryFaces;
+	[SerializeField] private GameObject[] boredFaces;
+	[SerializeField] private GameObject[] happyFaces;
+	[SerializeField] private GameObject[] embarrassedFaces;
+
+	private                  int          mood       = 0;
+	private                  int          interested = 0;
 
 	public int Mood { get { return mood; } set { mood = value; } }
 	public int Interested { get { return interested; } set { interested = value; } }
@@ -32,7 +41,9 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		interestHolder = InterestHolder.Instance; 
+		Query.faceSetter += ChangeMood;
+		
+		interestHolder   = InterestHolder.Instance; 
 	}
 
 	public void ChangeInterest(int changedValue)
@@ -49,25 +60,57 @@ public class Character : MonoBehaviour
 
 	public void ChangeMood(string change)
 	{
-		SetInactive();
-		Transform t = transform.Find(change);
-		t.gameObject.SetActive(true);
+		//SetInactive();
+		// Transform t = transform.Find(change);
+		// t.gameObject.SetActive(true);
+		// Debug.Log($"Change {change.Equals("bored")} {change}");
+		
+		// if (change.Equals("neutral") ||
+		// 	change.Equals("flirty")  ||
+		// 	change.Equals("bored")   ||
+		// 	change.Equals("angry")   ||
+		// 	change.Equals("happy") ||
+		// 	change.Equals("embarrassed")) {
+		// 	
+		if( change.Equals(DialogueContainer.neutral) ||
+			change.Equals(DialogueContainer.flirty) ||
+			change.Equals(DialogueContainer.angry) ||
+			change.Equals(DialogueContainer.bored) ||
+			change.Equals(DialogueContainer.happy) ||
+			change.Equals(DialogueContainer.embarrassed)) {
+			
+			for (int i = 0; i < neutralFaces.Length; i++)
+				neutralFaces[i].SetActive(change.Equals(DialogueContainer.neutral));
+			for (int i = 0; i < flirtyFaces.Length; i++)
+				flirtyFaces[i].SetActive(change.Equals(DialogueContainer.flirty));
+			for (int i = 0; i < boredFaces.Length; i++)
+				boredFaces[i].SetActive(change.Equals(DialogueContainer.bored));
+			for (int i = 0; i < angryFaces.Length; i++)
+				angryFaces[i].SetActive(change.Equals(DialogueContainer.angry));
+			for (int i = 0; i < embarrassedFaces.Length; i++)
+				embarrassedFaces[i].SetActive(change.Equals(DialogueContainer.embarrassed));
+			for (int i = 0; i < happyFaces.Length; i++)
+				happyFaces[i].SetActive(change.Equals(DialogueContainer.happy));
+		}
+		
 		switch (change)
 		{
-			case "Happy":
+			case "happy":
 				mood++;
 			break;
 
-			case "Angry":
+			case "angry":
 				mood--;
 				break;
 
-			case "Bored":
+			case "bored":
 				interested--;
 				break;
 
-			case "Flirty":
+			case "flirty":
 				interested++;
+				if (animator != null)
+					animator.Play(drinkAnimation.ToString());
 				break;
 		}
 	}
